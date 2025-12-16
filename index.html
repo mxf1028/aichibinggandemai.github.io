@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作为前辈的埋，被后辈伊暗恋上了！？！？ | 产品介绍</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #fef7f9;
+            color: #333;
+            line-height: 1.6;
+            background-image: linear-gradient(to bottom, #fff5f7, #fef0f3 100px, #fef7f9 400px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(232, 106, 146, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e86a92;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #e86a92;
+        }
+        
+        nav a.active {
+            color: #e86a92;
+            font-weight: 700;
+        }
+        
+        nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #e86a92;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e86a92;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            color: #e86a92;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, #e86a92, #ff8fab);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(232, 106, 146, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(232, 106, 146, 0.4);
+        }
+        
+        /* 分页样式 */
+        .pagination-container {
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pagination-tabs {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .tab-btn:hover {
+            color: #e86a92;
+        }
+        
+        .tab-btn.active {
+            color: #e86a92;
+        }
+        
+        .tab-btn.active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #e86a92;
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #e86a92;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: #ffb5cc;
+            border-radius: 2px;
+        }
+        
+        /* 第一页 - 故事简介 */
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .story-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .story-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .features {
+            margin: 25px 0;
+        }
+        
+        .features li {
+            margin-bottom: 12px;
+            list-style: none;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .features li:before {
+            content: '❤️';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        /* 第二页 - 角色介绍 */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .character-card {
+            background-color: #fff9fb;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(232, 106, 146, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .character-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .character-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #ffe4ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 2rem;
+            color: #e86a92;
+        }
+        
+        .character-name {
+            font-size: 1.8rem;
+            color: #e86a92;
+        }
+        
+        .character-role {
+            color: #ff8fab;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .character-desc {
+            color: #666;
+            font-size: 1.05rem;
+        }
+        
+        /* 第三页 - 图片库 */
+        .gallery-container {
+            margin-top: 30px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: white;
+            height: 250px;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .gallery-caption h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        /* 第四页 - 视频内容 */
+        .video-container {
+            margin-top: 30px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .video-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+        }
+        
+        .video-placeholder:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #e86a92, #ff8fab);
+            opacity: 0.7;
+        }
+        
+        .video-placeholder i {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h4 {
+            font-size: 1.3rem;
+            color: #e86a92;
+            margin-bottom: 10px;
+        }
+        
+        .video-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .video-duration {
+            display: inline-block;
+            background-color: #ffe4ec;
+            color: #e86a92;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* 第五页 - 互动 */
+        .interactive-content {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .heart-counter {
+            background-color: #fff9fb;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .heart-counter h3 {
+            font-size: 1.8rem;
+            color: #e86a92;
+            margin-bottom: 20px;
+        }
+        
+        #heart-display {
+            font-size: 3rem;
+            color: #e86a92;
+            margin: 20px 0;
+        }
+        
+        #heart-button {
+            background-color: #ff8fab;
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+        
+        #heart-button:hover {
+            background-color: #e86a92;
+        }
+        
+        /* 底部 */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 50px 0 30px;
+            border-radius: 30px 30px 0 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ff8fab;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #555;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .story-content, .characters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid, .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pagination-tabs {
+                justify-content: center;
+            }
+            
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-grid, .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>爱吃饼干的埋</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#pagination">分页浏览</a></li>
+                    <li><a href="#footer">联系作者</a></li>
+                </ul>
+            </nav>
+        </div>
+</header>
+
+    <!-- 主标题区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+          <h1>作为前辈的埋，被后辈伊暗恋上了！？！？</h1>
+            <p>一段充满甜蜜与纠结的网络恋爱物语，前辈与后辈之间微妙的情感纠葛，心跳加速的日常即将展开！</p>
+            <a href="#pagination" class="cta-button">开始探索故事</a>
+        </div>
+    </section>
+
+    <!-- 分页内容 -->
+    <section class="pagination-container" id="pagination">
+        <div class="container">
+            <!-- 分页标签 -->
+            <div class="pagination-tabs">
+                <button class="tab-btn active" data-tab="tab1">故事简介</button>
+                <button class="tab-btn" data-tab="tab2">角色介绍</button>
+                <button class="tab-btn" data-tab="tab3">图片库</button>
+                <button class="tab-btn" data-tab="tab4">视频内容</button>
+                <button class="tab-btn" data-tab="tab5">心动互动</button>
+            </div>
+            
+            <!-- 第一页：故事简介 -->
+            <div class="tab-content active" id="tab1">
+                <h2 class="page-title">故事简介</h2>
+                <div class="story-content">
+                    <div class="story-image">
+          <img src="/首页.png" width="1200" height="800" alt=""/>
+                    </div>
+                    <div class="story-text">
+                        <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》是一部个描绘网络恋爱甜蜜与烦恼的浪漫网站。故事围绕温柔认真的前辈"埋"和高冷阴郁的后辈"伊"展开。</p>
+                        <p>在上网冲浪的日常中，后辈伊一直默默视奸着前辈埋，被她的专业能力和温柔性格深深吸引。然而，埋却对伊的视奸没有放在心上，只把她当作一个一直暗恋自己的猎奇后辈。</p>
+                        <p>随着两人在网络上的交集越来越多，伊的心意逐渐无法隐藏，而埋也开始注意到这位后辈特别的存在...</p>
+                        
+                        <h3 style="margin-top: 30px; color: #e86a92;">作品特点</h3>
+                        <ul class="features">
+                            <li>细腻的心理描写，展现瓜条中隐藏的甜蜜与兴奋</li>
+                            <li>真实的网络背景，贴近现代饼干的生活</li>
+                            <li>精彩有趣的老师互动，心跳加速的浪漫场景</li>
+                            <li>幽默与感动并存的故事情节</li>
+                            <li>精美插画呈现关键场景</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第二页：角色介绍 -->
+            <div class="tab-content" id="tab2">
+                <h2 class="page-title">主要角色</h2>
+                <div class="characters-grid">
+                    <div class="character-card">
+                        <div class="character-header">
+                            <div class="character-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <div class="character-name">埋 (Mai)</div>
+                                <div class="character-role">前辈 · 黑影香草无差，白奶激推老师</div>
+                            </div>
+                        </div>
+                        <div class="character-desc">
+                            <p>19岁，画画轻松随意，对细节要求不高，画面能看的下去就行。虽然表面上看起来很吊儿郎当，但实际上非常关心朋友，尤其是对老朋友格外照顾。对恋爱反应敏感，完全察觉到了后辈伊其实一直在暗恋自己。</p>
+                            <p>喜欢喝奶茶，业余时间会去床上躺着刷手机。认为CP产品应该与私人感情分开，却不知自己正成为别人暗恋的对象。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="character-header">
+                            <div class="character-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <div class="character-name">伊 (YI)</div>
+                                <div class="character-role">后辈 · 香影极端洁癖老师</div>
+                            </div>
+                        </div>
+                        <div class="character-desc">
+                            <p>16岁，沉默寡言的香影老师，入坑姜饼人王国一年。被前辈埋的专业能力和温柔内心所吸引，不知不觉中陷入了暗恋。</p>
+                            <p>努力提升自己的写瓜条能力，希望能得到埋的认可。总是找卧底与埋接触，但又害怕自己的卧底被发现。喜欢涩涩，养了一个军pa私设。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第三页：图片库 -->
+            <div class="tab-content" id="tab3">
+                <h2 class="page-title">图片库</h2>
+                <p style="text-align: center; margin-bottom: 30px; color: #666;">以下是为本网站展示的精美插图，展示了故事中的关键场景</p>
+                
+                <div class="gallery-container">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                           <img src="微信图片_20251215232824_631_13.png" width="1200" height="800" alt=""/>
+                            <div class="gallery-caption">
+                              <h4>初次相遇</h4>
+                                <p>伊与埋的初次见面</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="微信图片_20251215232825_632_13.png" width="1200" height="800" alt=""/>
+                            <div class="gallery-caption">
+                              <h4>欲擒故纵</h4>
+                                <p>伊故意说埋是她对家</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                          <img src="微信图片_20251215232825_633_13.png" width="1200" height="800" alt=""/>
+                            <div class="gallery-caption">
+                              <h4>瓜条标题</h4>
+                                <p>瓜条大战时伊偷偷暗示埋</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                      <img src="微信图片_20251215232826_634_13.png" width="1200" height="800" alt=""/>
+                            <div class="gallery-caption">
+                              <h4>砰砰砰时刻</h4>
+                                <p>两人一起砰砰砰到深夜</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="微信图片_20251215232827_635_13.png" width="1200" height="800" alt=""/>
+                            <div class="gallery-caption">
+                              <h4>赠送父母</h4>
+                                <p>埋试图将自己的父母送给没父母的伊</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="微信图片_20251215232850_636_13.png" width="1216" height="894" alt=""/>
+                            <div class="gallery-caption">
+                              <h4>免费赠图</h4>
+                                <p>埋精心为伊制作的幽默梗图</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第四页：视频内容 -->
+            <div class="tab-content" id="tab4">
+                <h2 class="page-title">视频内容</h2>
+                <p style="text-align: center; margin-bottom: 30px; color: #666;">观看本网站的宣传视频和相关内容</p>
+                
+                <div class="video-container">
+                    <div class="video-grid">
+                        <div class="video-item">
+                           <div class="video-player">
+                                <iframe src="微信视频2025-12-16_150922_305.mp4" frameborder="0" allowfullscreen></iframe>
+                         </div>
+                            <div class="video-info">
+                                <h4>网站预告片</h4>
+                                <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》网站官方预告片，首次公开精彩片段。</p>
+                                <span class="video-duration">00:16</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-item">
+                             <div class="video-player">
+                                <iframe src="微信视频2025-12-16_153218_128.mp4" frameborder="0" allowfullscreen></iframe>
+                         </div>
+                            <div class="video-info">
+                                <h4>精美梗图</h4>
+                                <p>伟大的，温柔的埋师亲手制作梗图，分享了伊师到处毕业人和幕后推手颂师。</p>
+                                <span class="video-duration">00:12</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-item">
+                           <div class="video-player">
+                                <iframe src="微信视频2025-12-16_144802_833.mp4" frameborder="0" allowfullscreen></iframe>
+                         </div>
+                            <div class="video-info">
+                                <h4>制作花絮</h4>
+                                <p>视频制作过程的幕后花絮，展示从剪辑软件到完整视频的创作历程。</p>
+                                <span class="video-duration">00:22</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-item">
+                           <div class="video-player">
+                                <iframe src="微信视频2025-12-16_144237_772.mp4" frameborder="0" allowfullscreen></iframe>
+                         </div>
+                            <div class="video-info">
+                                <h4>主题曲MV</h4>
+                                <p>作品主题曲「伊爱上了埋」完整版音乐视频，由黑影牛奶饼干（英配）演唱。</p>
+                                <span class="video-duration">4:33</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-item">
+                           <div class="video-player">
+                                <iframe src="微信视频2025-12-16_141546_322.mp4" frameborder="0" allowfullscreen></iframe>
+                         </div>
+                            <div class="video-info">
+                                <h4>粉丝反应视频</h4>
+                                <p>粉丝看到伊给埋写的瓜条的反应和评论合集。</p>
+                                <span class="video-duration">00:34</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-item">
+                            <div class="video-player">
+                                <iframe src="微信视频2025-12-16_154305_746.mp4" frameborder="0" allowfullscreen></iframe>
+                         </div>
+                            <div class="video-info">
+                                <h4>老师介绍视频</h4>
+                                <p>详细介绍两位老师埋和伊的性格特点、背景故事。</p>
+                                <span class="video-duration">6:45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第五页：互动 -->
+            <div class="tab-content" id="tab5">
+                <h2 class="page-title">心动互动</h2>
+                <div class="interactive-content">
+                    <div class="heart-counter">
+                        <h3>为这段暗恋故事增加心跳指数</h3>
+                        <p>点击下面的按钮，为埋前辈和伊后辈的爱情加油！每点击一次，代表他们的关系更近一步。</p>
+                        <div id="heart-display">❤️ 0</div>
+                        <p>当前关系阶段：<span id="relationship-stage">陌生网友</span></p>
+                        <button id="heart-button">增加心动值</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="footer">
+        <div class="container">
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于作者</h3>
+                    <p>爱吃饼干的埋致力于创作最动人的恋爱故事，带给读者心跳加速的阅读体验。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>网站信息</h3>
+                    <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》</p>
+                    <p>形式：HTML5网站</p>
+                    <p>发行日期：2025年12月15日</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注爱吃饼干的埋</h3>
+                    <p>以获取最新作品信息与更新</p>
+                    <p>小红书个人主页:  https://xhslink.com/m/1uUQENJsYrF</p>
+					<p>哔哩哔哩个人主页： https://b23.tv/b6U7dq3</p>
+					<p>LOFTER个人主页： https://xinjinjumin660701183230.lofter.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 爱吃饼干的埋 版权所有 | 《作为前辈的埋，被后辈伊暗恋上了！？！？》是爱吃饼干的埋创建的虚拟网站</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+        // 分页标签切换功能
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有标签的active类
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // 隐藏所有内容
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // 激活当前标签
+                this.classList.add('active');
+                
+                // 显示对应内容
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // 更新导航栏状态
+                updateNavActiveState();
+            });
+        });
+        
+        // 更新导航栏状态
+        function updateNavActiveState() {
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#pagination') {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // 心动计数器交互
+        let heartCount = 0;
+        const heartButton = document.getElementById('heart-button');
+        const heartDisplay = document.getElementById('heart-display');
+        const relationshipStage = document.getElementById('relationship-stage');
+        
+        const stages = [
+            {threshold: 0, stage: "陌生网友"},
+            {threshold: 5, stage: "开始注意"},
+            {threshold: 10, stage: "日常交谈"},
+            {threshold: 20, stage: "互相拉黑"},
+            {threshold: 30, stage: "暗生情愫"},
+            {threshold: 40, stage: "心意察觉"},
+            {threshold: 50, stage: "暧昧阶段"},
+            {threshold: 70, stage: "互相喜欢"},
+            {threshold: 100, stage: "瓜条乱飞"}
+        ];
+        
+        heartButton.addEventListener('click', function() {
+            heartCount++;
+            heartDisplay.textContent = `❤️ ${heartCount}`;
+            
+            // 更新关系阶段
+            let currentStage = stages[0].stage;
+            for (let i = stages.length - 1; i >= 0; i--) {
+                if (heartCount >= stages[i].threshold) {
+                    currentStage = stages[i].stage;
+                    break;
+                }
+            }
+            relationshipStage.textContent = currentStage;
+            
+            // 添加动画效果
+            heartDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                heartDisplay.style.transform = 'scale(1)';
+            }, 200);
+            
+            // 每10次显示特别消息
+            if (heartCount % 10 === 0) {
+                const messages = [
+                    "伊的心跳加速了！",
+                    "埋开始注意到伊的不同",
+                    "两人的距离又近了一步",
+                    "社群的气氛变得微妙",
+                    "瓜条正在到处乱飞"
+                ];
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                alert(`特别事件：${randomMessage}`);
+            }
+        });
+        
+        // 平滑滚动导航
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#home' || targetId === '#footer') {
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新导航栏状态
+                    const navLinks = document.querySelectorAll('nav a');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                } else if (targetId === '#pagination') {
+                    // 滚动到分页部分
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 更新导航栏状态
+                    const navLinks = document.querySelectorAll('nav a');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // 激活第一个标签页
+                    setTimeout(() => {
+                        document.querySelectorAll('.tab-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        document.querySelectorAll('.tab-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        
+                        document.querySelector('.tab-btn[data-tab="tab1"]').classList.add('active');
+                        document.getElementById('tab1').classList.add('active');
+                    }, 500);
+                }
+            });
+        });
+        
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
