@@ -742,7 +742,7 @@
                             <img src="微信图片_20251215232827_635_13.png" width="1200" height="800" alt=""/>
                             <div class="gallery-caption">
                               <h4>赠送父母</h4>
-                                <p>埋试图将自己的父母送给没父母的伊</p>
+                                <p>好心的埋试图将自己的父母送给伊</p>
                             </div>
                         </div>
                         
@@ -922,15 +922,25 @@
         const relationshipStage = document.getElementById('relationship-stage');
         
         const stages = [
-            {threshold: 0, stage: "陌生网友"},
-            {threshold: 5, stage: "开始注意"},
-            {threshold: 10, stage: "日常交谈"},
-            {threshold: 20, stage: "互相拉黑"},
-            {threshold: 30, stage: "暗生情愫"},
-            {threshold: 40, stage: "心意察觉"},
-            {threshold: 50, stage: "暧昧阶段"},
-            {threshold: 70, stage: "互相喜欢"},
-            {threshold: 100, stage: "瓜条乱飞"}
+            {threshold: 0, stage: "埋和伊一开始是陌生网友"},
+            {threshold: 5, stage: "后来两人开始注意到对方"},
+            {threshold: 10, stage: "埋和伊在b站评论区交流"},
+            {threshold: 20, stage: "伊是埋的前女神"},
+            {threshold: 30, stage: "伊看到埋牛波一的live2d技术，开始暗生情愫"},
+            {threshold: 40, stage: "埋察觉到了伊的心意"},
+            {threshold: 50, stage: "双方开始进入暧昧阶段"},
+            {threshold: 70, stage: "可惜是对家，但互相喜欢"},
+            {threshold: 100, stage: "所以两人只能用瓜条乱飞的方式来表达对对方的爱意了"},
+			{threshold: 110, stage: "两人日常在大群里面拌嘴对方"},
+			{threshold: 120, stage: "两人在互闹小脾气，而两位老师都认识的粉丝要开心死了"},
+			{threshold: 130, stage: "有人假装和埋互不认识来发瓜条"},
+			{threshold: 140, stage: "抖音神人二年级小学生cookie用没有任何聊天证据的引战瓜条来撮合两人"},
+			{threshold: 150, stage: "看到爱神的瓜条，于是埋很感动，想念起了伊"},
+			{threshold: 160, stage: "埋太感动了，于是在大群里给伊发了好多好多条电棍语音"},
+			{threshold: 170, stage: "埋在大群里发完电棍后还是感觉很感动"},
+			{threshold: 180, stage: "于是埋决定给伊做一个恋爱网站来纪念她们过去的日子"},
+			{threshold: 190, stage: "埋修改了30多次网站代码"},
+			{threshold: 200, stage: "埋终于做好恋爱网站了！"},
         ];
         
         heartButton.addEventListener('click', function() {
@@ -960,7 +970,14 @@
                     "埋开始注意到伊的不同",
                     "两人的距离又近了一步",
                     "社群的气氛变得微妙",
-                    "瓜条正在到处乱飞"
+                    "瓜条正在到处乱飞",
+					"伊正在和粉丝闹别扭",
+					"埋正在被求婚！",
+					"埋正在给伊制作精美梗图",
+					"伊觉得对家女神想和自己砰砰砰",
+					"伊害羞蕴含的在小红书帖子《黑春1的惊天地泣鬼神》简介里说“exr”（恶心人）（不可能是别人，只能是埋了）我会一直盯着你的",
+					"埋看到瓜条开始变的害羞了！更想砰砰砰伊了",
+					"埋被到处飞的瓜条害羞到了！于是做了恋爱网站~~~"
                 ];
                 const randomMessage = messages[Math.floor(Math.random() * messages.length)];
                 alert(`特别事件：${randomMessage}`);
@@ -1032,3 +1049,4 @@
 </body>
 
 </html>
+
