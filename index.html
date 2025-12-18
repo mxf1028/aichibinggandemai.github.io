@@ -18,6 +18,7 @@
             color: #333;
             line-height: 1.6;
             background-image: linear-gradient(to bottom, #fff5f7, #fef0f3 100px, #fef7f9 400px);
+            overflow-x: hidden;
         }
         
         .container {
@@ -58,6 +59,7 @@
             display: flex;
             list-style: none;
             gap: 30px;
+            align-items: center;
         }
         
         nav a {
@@ -509,11 +511,862 @@
             background-color: #e86a92;
         }
         
+        /* 第六页：文章专栏样式 */
+        .article-columns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .article-column {
+            background: #fff9fb;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(232, 106, 146, 0.1);
+            border-top: 4px solid #e86a92;
+            min-height: 400px;
+        }
+
+        .article-column h3 {
+            color: #e86a92;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px dashed #ffe4ec;
+            padding-bottom: 10px;
+        }
+
+        .article-column .text-content {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* 图片插入点样式 */
+        .img-insert-point {
+            display: inline-block;
+            background-color: #ffe4ec;
+            color: #e86a92;
+            padding: 8px 15px;
+            margin: 10px 5px;
+            border-radius: 20px;
+            border: 1px dashed #ff8fab;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .img-insert-point:hover {
+            background-color: #ffd4e4;
+        }
+
+        /* 图片弹窗 (模态框) */
+        .img-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .img-modal-content {
+            margin: 5% auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(232, 106, 146, 0.5);
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        #modal-title {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+
+        /* 改进的西瓜互动样式 */
+        .watermelon-interactive {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f0f3;
+            border-radius: 15px;
+        }
+        .watermelon {
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .watermelon:hover {
+            transform: scale(1.05);
+        }
+        .watermelon-body {
+            position: relative;
+            width: 120px;
+            height: 80px;
+            background: #ff4757;
+            border-radius: 50px 50px 50px 50px / 30px 30px 30px 30px;
+            overflow: hidden;
+        }
+        .watermelon .rind {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 15px;
+            background: #2ed573;
+        }
+        .watermelon .flesh {
+            position: absolute;
+            top: 15px;
+            width: 100%;
+            height: 65px;
+            background: #ff6b81;
+        }
+        .watermelon .seed {
+            position: absolute;
+            width: 6px;
+            height: 8px;
+            background: #2f3542;
+            border-radius: 50%;
+        }
+        .watermelon .seed:nth-child(1) { top: 25px; left: 30px; }
+        .watermelon .seed:nth-child(2) { top: 40px; left: 60px; }
+        .watermelon .seed:nth-child(3) { top: 55px; left: 90px; }
+        
+        .watermelon-stage {
+            margin-top: 15px;
+            padding: 10px;
+            background: #ffe4ec;
+            border-radius: 10px;
+            color: #e86a92;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* 匿名提问区样式 - 开发者模式下可编辑/删除 */
+        .qna-container .new-question {
+            margin-bottom: 30px;
+        }
+        #new-question-text {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 2px solid #ffe4ec;
+            border-radius: 10px;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        #submit-question {
+            background: linear-gradient(to right, #e86a92, #ff8fab);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        #submit-question:hover {
+            opacity: 0.9;
+        }
+        .single-question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff8fab;
+            position: relative;
+        }
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .questioner {
+            font-weight: bold;
+            color: #e86a92;
+            font-size: 1.1rem;
+        }
+        .question-content {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .question-actions {
+            display: flex;
+            gap: 20px;
+        }
+        .like-btn, .comment-btn {
+            color: #888;
+            cursor: pointer;
+            font-size: 1.05rem;
+        }
+        .like-btn.liked {
+            color: #e86a92;
+        }
+        .delete-comment-btn, .edit-comment-btn {
+            color: #ff6b81;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        .delete-question-btn {
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        .comments-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            font-size: 1em;
+        }
+        .single-comment {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .new-comment input {
+            width: calc(100% - 70px);
+            padding: 8px;
+            border: 1px solid #ffe4ec;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+        .new-comment button {
+            background: #ffe4ec;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* 埋伊CP官文样式 - 与其他文章专栏一致 */
+        .locked-column {
+            grid-column: 1 / -1; /* 让CP官文占据整行 */
+            background: #fff9fb; /* 与其他专栏一致的背景色 */
+            padding: 30px !important; /* 与其他专栏一致的内边距 */
+            border-top: 4px solid #e86a92 !important; /* 与其他专栏一致的边框 */
+            min-height: 400px; /* 与其他专栏一致的最小高度 */
+        }
+        
+        .locked-column .password-prompt {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        #fanfic-password {
+            padding: 15px 20px;
+            border: 2px solid #ffe4ec; /* 与其他输入框一致的边框 */
+            border-radius: 10px;
+            width: 300px; /* 适当调整宽度 */
+            font-size: 1.1rem; /* 与其他输入框一致的字体大小 */
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
+        
+        #fanfic-password:focus {
+            outline: none;
+            border-color: #e86a92;
+            box-shadow: 0 0 10px rgba(232, 106, 146, 0.3);
+        }
+        
+        #unlock-fanfic {
+            background: linear-gradient(to right, #e86a92, #ff8fab);
+            color: white;
+            border: none;
+            padding: 12px 30px; /* 与其他按钮一致的padding */
+            border-radius: 25px; /* 与其他按钮一致的圆角 */
+            cursor: pointer;
+            font-size: 1.1rem; /* 与其他按钮一致的字体大小 */
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        #unlock-fanfic:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(232, 106, 146, 0.4);
+        }
+        
+        #password-hint {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #ff4757;
+        }
+        
+        .fanfic-content {
+            margin-top: 30px;
+            font-size: 1.1rem; /* 与其他专栏一致的字体大小 */
+            line-height: 1.8; /* 与其他专栏一致的行高 */
+            color: #555; /* 与其他专栏一致的颜色 */
+            background: transparent; /* 移除背景 */
+            padding: 0; /* 移除内边距 */
+            border-radius: 0; /* 移除圆角 */
+            box-shadow: none; /* 移除阴影 */
+        }
+        
+        .fanfic-content p {
+            margin-bottom: 20px; /* 与其他段落一致的间距 */
+        }
+        
+        .fanfic-content h4 {
+            color: #e86a92;
+            margin: 25px 0 15px; /* 与其他标题一致的间距 */
+            font-size: 1.5rem; /* 与其他标题一致的字体大小 */
+        }
+        
+        /* 埋伊CP投稿专栏样式 - 与其他文章专栏一致 */
+        .submission-column {
+            background: #fff9fb; /* 与其他专栏一致的背景色 */
+            padding: 30px !important; /* 与其他专栏一致的内边距 */
+            border-top: 4px solid #ff6b81 !important; /* 保持特殊颜色但与其他专栏一致的边框厚度 */
+            min-height: 400px; /* 与其他专栏一致的最小高度 */
+        }
+        
+        .submission-column h3 {
+            color: #ff6b81; /* 保持特殊颜色 */
+            font-size: 1.8rem; /* 与其他专栏标题一致的字体大小 */
+            margin-bottom: 20px; /* 与其他专栏标题一致的边距 */
+        }
+        
+        .submission-info {
+            background: transparent; /* 移除白色背景 */
+            padding: 0; /* 移除内边距 */
+            border-radius: 0; /* 移除圆角 */
+            box-shadow: none; /* 移除阴影 */
+            margin-bottom: 20px; /* 调整边距 */
+        }
+        
+        .submission-info p {
+            font-size: 1.1rem; /* 与其他专栏一致的字体大小 */
+            margin-bottom: 15px; /* 与其他段落一致的边距 */
+            line-height: 1.8; /* 与其他段落一致的行高 */
+        }
+        
+        .email-address {
+            display: inline-block;
+            background: #ffe4ec;
+            padding: 10px 20px; /* 调整内边距 */
+            border-radius: 20px; /* 调整圆角 */
+            font-size: 1.1rem; /* 与其他文本一致的字体大小 */
+            color: #e86a92;
+            font-weight: bold;
+            margin: 10px 0;
+            border: 1px dashed #ff8fab; /* 调整边框厚度 */
+        }
+        
+        .encouragement {
+            font-size: 1.1rem; /* 与其他文本一致的字体大小 */
+            color: #e86a92;
+            text-align: center;
+            padding: 15px;
+            background: #fff9fb;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 3px solid #e86a92; /* 调整边框厚度 */
+            border-right: 3px solid #e86a92; /* 调整边框厚度 */
+        }
+        
+        /* 埋伊CP文投稿展示样式 */
+        .submission-display-column {
+            grid-column: 1 / -1; /* 让投稿展示占据整行 */
+            background: #fff9fb;
+            padding: 30px !important;
+            border-top: 4px solid #e86a92 !important;
+            min-height: 400px;
+            margin-top: 30px;
+        }
+
+        .submission-display-column h3 {
+            color: #e86a92;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            border-bottom: 2px dashed #ffe4ec;
+            padding-bottom: 10px;
+        }
+
+        /* 排行榜样式 */
+        .rankings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .submission-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #ddd;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .submission-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(232, 106, 146, 0.1);
+        }
+
+        /* 前三名特殊装饰 - 饼干主题 */
+        .submission-item.rank-1 {
+            border-left: 4px solid #FFD700;
+            background: linear-gradient(to right, #fffaf0, #fff9fb);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+            border: 2px solid #FFD700;
+        }
+
+        .submission-item.rank-1::before {
+            content: "🍪";
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            animation: cookieSpin 3s infinite linear;
+        }
+
+        .submission-item.rank-1::after {
+            content: "金牌饼干";
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            font-size: 0.8rem;
+            color: #FFD700;
+            font-weight: bold;
+            background: #fffaf0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid #FFD700;
+        }
+
+        .submission-item.rank-2 {
+            border-left: 4px solid #C0C0C0;
+            background: linear-gradient(to right, #f8f8f8, #fff9fb);
+            box-shadow: 0 5px 15px rgba(192, 192, 192, 0.2);
+            border: 2px solid #C0C0C0;
+        }
+
+        .submission-item.rank-2::before {
+            content: "🍪";
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.8rem;
+            animation: cookieFloat 2s infinite ease-in-out;
+        }
+
+        .submission-item.rank-2::after {
+            content: "银牌饼干";
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            font-size: 0.8rem;
+            color: #C0C0C0;
+            font-weight: bold;
+            background: #f8f8f8;
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid #C0C0C0;
+        }
+
+        .submission-item.rank-3 {
+            border-left: 4px solid #CD7F32;
+            background: linear-gradient(to right, #fef8f0, #fff9fb);
+            box-shadow: 0 5px 15px rgba(205, 127, 50, 0.2);
+            border: 2px solid #CD7F32;
+        }
+
+        .submission-item.rank-3::before {
+            content: "🍪";
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.6rem;
+            animation: cookieBounce 2.5s infinite;
+        }
+
+        .submission-item.rank-3::after {
+            content: "铜牌饼干";
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            font-size: 0.8rem;
+            color: #CD7F32;
+            font-weight: bold;
+            background: #fef8f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid #CD7F32;
+        }
+
+        @keyframes cookieSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes cookieFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes cookieBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .submission-author {
+            font-weight: bold;
+            color: #e86a92;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px dotted #ffe4ec;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submission-author::before {
+            content: "👤";
+        }
+
+        .submission-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submission-title::before {
+            content: "📖";
+        }
+
+        .submission-content {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fef7f9;
+            border-radius: 8px;
+            border-left: 3px solid #ff8fab;
+        }
+
+        .submission-stats {
+            display: flex;
+            gap: 20px;
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .submission-stats span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #ffe4ec;
+        }
+
+        .no-submissions {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+            font-size: 1.2rem;
+            background: #fff9fb;
+            border-radius: 10px;
+            border: 2px dashed #ffe4ec;
+        }
+
+        .no-submissions i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+            color: #ff8fab;
+        }
+        
+        /* 第七页：跑酷游戏样式 */
+        #parkour-game-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .game-info-panel {
+            background: #fff9fb;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(232, 106, 146, 0.1);
+            border-top: 4px solid #e86a92;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .game-stat {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        #game-canvas-container {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 5px solid #e86a92;
+        }
+        
+        #game-canvas {
+            display: block;
+            background: linear-gradient(to bottom, #87CEEB, #98FB98);
+        }
+        
+        .game-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .game-btn {
+            background: linear-gradient(to right, #e86a92, #ff8fab);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .game-btn.secondary {
+            background: linear-gradient(to right, #6c757d, #adb5bd);
+        }
+        
+        .game-instructions {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f0f3;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+        
+        .game-instructions h4 {
+            color: #e86a92;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* 游戏内对话框样式 */
+        .game-dialog {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border-left: 5px solid #e86a92;
+            border-right: 5px solid #2ed573;
+            max-width: 80%;
+            z-index: 100;
+            display: none;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .game-dialog p {
+            margin: 0;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+        
+        .mai-dialog {
+            border-left: 5px solid #e86a92;
+            border-right: none;
+        }
+        
+        .yi-dialog {
+            border-left: none;
+            border-right: 5px solid #2ed573;
+        }
+        
+        .dialog-speaker {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .mai-speaker {
+            color: #e86a92;
+        }
+        
+        .yi-speaker {
+            color: #2ed573;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        /* 登录界面样式 */
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fef7f9 0%, #ffe4ec 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loginModal {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(232, 106, 146, 0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border-top: 8px solid #e86a92;
+        }
+
+        #loginModal h2 {
+            color: #e86a92;
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+        }
+
+        #loginModal > p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+
+        .login-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            margin: 15px 0;
+            background: #fff;
+            border: 2px solid #ffe4ec;
+            border-radius: 50px;
+            color: #e86a92;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #fff5f7;
+            border-color: #e86a92;
+            transform: translateY(-3px);
+        }
+
+        #devPasswordPrompt input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffe4ec;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        #submitDevPassword, #backToMode {
+            background: #e86a92;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 1.1rem;
+        }
+
+        #backToMode {
+            background: #ccc;
+            color: #333;
+        }
+        
+        /* 切换模式按钮 */
+        .switch-mode-btn {
+            background: linear-gradient(to right, #e86a92, #ff8fab);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .switch-mode-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* 开发者模式标记 */
+        .dev-mode-indicator {
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
         /* 底部 */
         footer {
             background-color: #333;
             color: #fff;
-            padding: 50px 0 30px;
+            padding: 60px 0 40px;
             border-radius: 30px 30px 0 0;
             margin-top: 60px;
         }
@@ -532,7 +1385,7 @@
         }
         
         .footer-section h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 20px;
             color: #ff8fab;
         }
@@ -542,7 +1395,7 @@
             padding-top: 30px;
             border-top: 1px solid #555;
             color: #aaa;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
         /* 响应式设计 */
@@ -580,6 +1433,59 @@
                 padding: 12px 20px;
                 font-size: 1rem;
             }
+            
+            .switch-mode-btn {
+                margin: 10px 0 0 0;
+            }
+            
+            #game-canvas-container {
+                max-width: 95%;
+            }
+            
+            #game-canvas {
+                width: 100%;
+                height: auto;
+            }
+            
+            /* 移动端调整CP官文样式 */
+            .locked-column {
+                padding: 20px !important;
+            }
+            
+            #fanfic-password {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
+                font-size: 1rem;
+            }
+            
+            .fanfic-content {
+                padding: 0;
+                font-size: 1rem;
+            }
+            
+            /* 移动端调整文章专栏 */
+            .article-column {
+                padding: 20px;
+            }
+            
+            .article-column h3 {
+                font-size: 1.5rem;
+            }
+            
+            /* 移动端调整投稿展示 */
+            .submission-display-column {
+                padding: 20px !important;
+            }
+            
+            .submission-item {
+                padding: 15px;
+            }
+            
+            .submission-stats {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -595,461 +1501,2779 @@
             .gallery-grid, .video-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .game-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .game-btn {
+                width: 80%;
+            }
+            
+            .game-dialog {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .game-dialog p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-heart"></i>
-                <span>爱吃饼干的埋</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">首页</a></li>
-                    <li><a href="#pagination">分页浏览</a></li>
-                    <li><a href="#footer">联系作者</a></li>
-                </ul>
-            </nav>
-        </div>
-</header>
-
-    <!-- 主标题区域 -->
-    <section class="hero" id="home">
-        <div class="container">
-          <h1>作为前辈的埋，被后辈伊暗恋上了！？！？</h1>
-            <p>一段充满甜蜜与纠结的网络恋爱物语，前辈与后辈之间微妙的情感纠葛，心跳加速的日常即将展开！</p>
-            <a href="#pagination" class="cta-button">开始探索故事</a>
-        </div>
-    </section>
-
-    <!-- 分页内容 -->
-    <section class="pagination-container" id="pagination">
-        <div class="container">
-            <!-- 分页标签 -->
-            <div class="pagination-tabs">
-                <button class="tab-btn active" data-tab="tab1">故事简介</button>
-                <button class="tab-btn" data-tab="tab2">角色介绍</button>
-                <button class="tab-btn" data-tab="tab3">图片库</button>
-                <button class="tab-btn" data-tab="tab4">视频内容</button>
-                <button class="tab-btn" data-tab="tab5">心动互动</button>
+    <!-- 登录遮罩层 -->
+    <div id="loginOverlay">
+        <div id="loginModal">
+            <h2><i class="fas fa-cookie-bite"></i> 欢迎来到埋伊小站</h2>
+            <p>请选择你的访问模式：</p>
+            
+            <button id="guestMode" class="login-btn">
+                <i class="fas fa-user"></i> 游客模式
+            </button>
+            
+            <button id="devModeBtn" class="login-btn">
+                <i class="fas fa-code"></i> 开发者模式
+            </button>
+            
+            <!-- 开发者密码输入框（默认隐藏） -->
+            <div id="devPasswordPrompt" style="display:none; margin-top:20px;">
+                <input type="password" id="devPassword" placeholder="请输入开发者密码">
+                <button id="submitDevPassword">进入</button>
+                <p id="passwordError" style="color:#ff4757; font-size:0.9em; margin-top:5px;"></p>
+                <button id="backToMode" style="background:none; border:none; color:#888; margin-top:10px;">← 返回选择模式</button>
             </div>
             
-            <!-- 第一页：故事简介 -->
-            <div class="tab-content active" id="tab1">
-                <h2 class="page-title">故事简介</h2>
-                <div class="story-content">
-                    <div class="story-image">
-          <img src="首页.png" width="1200" height="800" alt=""/>
-                    </div>
-                    <div class="story-text">
-                        <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》是一部个描绘网络恋爱甜蜜与烦恼的浪漫网站。故事围绕温柔认真的前辈"埋"和高冷阴郁的后辈"伊"展开。</p>
-                        <p>在上网冲浪的日常中，后辈伊一直默默视奸着前辈埋，被她的专业能力和温柔性格深深吸引。然而，埋却对伊的视奸没有放在心上，只把她当作一个一直暗恋自己的猎奇后辈。</p>
-                        <p>随着两人在网络上的交集越来越多，伊的心意逐渐无法隐藏，而埋也开始注意到这位后辈特别的存在...</p>
-                        
-                        <h3 style="margin-top: 30px; color: #e86a92;">作品特点</h3>
-                        <ul class="features">
-                            <li>细腻的心理描写，展现瓜条中隐藏的甜蜜与兴奋</li>
-                            <li>真实的网络背景，贴近现代饼干的生活</li>
-                            <li>精彩有趣的老师互动，心跳加速的浪漫场景</li>
-                            <li>幽默与感动并存的故事情节</li>
-                            <li>精美插画呈现关键场景</li>
-                        </ul>
+            <!-- 添加密码提示 -->
+            <div style="margin-top: 20px; padding: 15px; background: #fff9fb; border-radius: 10px; border: 1px dashed #ffe4ec;">
+                <p style="margin: 0; color: #666; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> 提示：开发者密码是 <strong>我来找伊砰砰砰了~~~</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 网站主内容 (默认隐藏，登录后显示) -->
+    <div id="mainContent" style="display:none;">
+        <!-- 导航栏 -->
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                    <span>爱吃饼干的埋</span>
+                    <span id="devModeIndicator" class="dev-mode-indicator" style="display:none;">开发者模式</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active">首页</a></li>
+                        <li><a href="#pagination">分页浏览</a></li>
+                        <li><a href="#footer">联系作者</a></li>
+                        <li><button id="switchModeBtn" class="switch-mode-btn"><i class="fas fa-exchange-alt"></i> 切换模式</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- 主标题区域 -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>作为前辈的埋，被后辈伊暗恋上了！？！？</h1>
+                <p>一段充满甜蜜与纠结的网络恋爱物语，前辈与后辈之间微妙的情感纠葛，心跳加速的日常即将展开！</p>
+                <a href="#pagination" class="cta-button">开始探索故事</a>
+            </div>
+        </section>
+
+        <!-- 分页内容 -->
+        <section class="pagination-container" id="pagination">
+            <div class="container">
+                <!-- 分页标签 -->
+                <div class="pagination-tabs">
+                    <button class="tab-btn active" data-tab="tab1">故事简介</button>
+                    <button class="tab-btn" data-tab="tab2">角色介绍</button>
+                    <button class="tab-btn" data-tab="tab3">图片库</button>
+                    <button class="tab-btn" data-tab="tab4">视频内容</button>
+                    <button class="tab-btn" data-tab="tab5">❤️ 心动互动</button>
+                    <button class="tab-btn" data-tab="tab6">📝 文章专栏</button>
+                    <button class="tab-btn" data-tab="tab7">🎮 跑酷游戏</button>
+                </div>
+                
+                <!-- 第一页：故事简介 -->
+                <div class="tab-content active" id="tab1">
+                    <h2 class="page-title">故事简介</h2>
+                    <div class="story-content">
+                        <div class="story-image">
+                            <img src="首页.png" width="1200" height="800" alt="前辈与后辈的浪漫故事"/>
+                        </div>
+                        <div class="story-text">
+                            <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》是一部个描绘网络恋爱甜蜜与烦恼的浪漫网站。故事围绕温柔认真的前辈"埋"和高冷阴郁的后辈"伊"展开。</p>
+                            <p>在上网冲浪的日常中，后辈伊一直默默视奸着前辈埋，被她的专业能力和温柔性格深深吸引。然而，埋却对伊的视奸没有放在心上，只把她当作一个一直暗恋自己的猎奇后辈。</p>
+                            <p>随着两人在网络上的交集越来越多，伊的心意逐渐无法隐藏，而埋也开始注意到这位后辈特别的存在...</p>
+                            
+                            <h3 style="margin-top: 30px; color: #e86a92;">作品特点</h3>
+                            <ul class="features">
+                                <li>细腻的心理描写，展现瓜条中隐藏的甜蜜与兴奋</li>
+                                <li>真实的网络背景，贴近现代饼干的生活</li>
+                                <li>精彩有趣的老师互动，心跳加速的浪漫场景</li>
+                                <li>幽默与感动并存的故事情节</li>
+                                <li>精美插画呈现关键场景</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 第二页：角色介绍 -->
-            <div class="tab-content" id="tab2">
-                <h2 class="page-title">主要角色</h2>
-                <div class="characters-grid">
-                    <div class="character-card">
-                        <div class="character-header">
-                            <div class="character-icon">
-                                <i class="fas fa-user-tie"></i>
+                
+                <!-- 第二页：角色介绍 -->
+                <div class="tab-content" id="tab2">
+                    <h2 class="page-title">主要角色</h2>
+                    <div class="characters-grid">
+                        <div class="character-card">
+                            <div class="character-header">
+                                <div class="character-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <div class="character-name">埋 (Mai)</div>
+                                    <div class="character-role">前辈 · 黑影香草无差，白奶激推老师</div>
+                                </div>
                             </div>
-                            <div>
-                                <div class="character-name">埋 (Mai)</div>
-                                <div class="character-role">前辈 · 黑影香草无差，白奶激推老师</div>
+                            <div class="character-desc">
+                                <p>19岁，画画轻松随意，对细节要求不高，画面能看的下去就行。虽然表面上看起来很吊儿郎当，但实际上非常关心朋友，尤其是对老朋友格外照顾。对恋爱反应敏感，完全察觉到了后辈伊其实一直在暗恋自己。</p>
+                                <p>喜欢喝奶茶，业余时间会去床上躺着刷手机。认为CP产品应该与私人感情分开，却不知自己正成为别人暗恋的对象。</p>
                             </div>
                         </div>
-                        <div class="character-desc">
-                            <p>19岁，画画轻松随意，对细节要求不高，画面能看的下去就行。虽然表面上看起来很吊儿郎当，但实际上非常关心朋友，尤其是对老朋友格外照顾。对恋爱反应敏感，完全察觉到了后辈伊其实一直在暗恋自己。</p>
-                            <p>喜欢喝奶茶，业余时间会去床上躺着刷手机。认为CP产品应该与私人感情分开，却不知自己正成为别人暗恋的对象。</p>
+                        
+                        <div class="character-card">
+                            <div class="character-header">
+                                <div class="character-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div>
+                                    <div class="character-name">伊 (YI)</div>
+                                    <div class="character-role">后辈 · 香影极端洁癖老师</div>
+                                </div>
+                            </div>
+                            <div class="character-desc">
+                                <p>16岁，沉默寡言的香影老师，入坑姜饼人王国一年。被前辈埋的专业能力和温柔内心所吸引，不知不觉中陷入了暗恋。</p>
+                                <p>努力提升自己的写瓜条能力，希望能得到埋的认可。总是找卧底与埋接触，但又害怕自己的卧底被发现。喜欢涩涩，养了一个军pa私设。</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- 第三页：图片库 -->
+                <div class="tab-content" id="tab3">
+                    <h2 class="page-title">图片库</h2>
+                    <p style="text-align: center; margin-bottom: 30px; color: #666;">以下是为本网站展示的精美插图，展示了故事中的关键场景</p>
                     
-                    <div class="character-card">
-                        <div class="character-header">
-                            <div class="character-icon">
-                                <i class="fas fa-user-graduate"></i>
+                    <div class="gallery-container">
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="微信图片_20251215232824_631_13.png" width="1200" height="800" alt=""/>
+                                <div class="gallery-caption">
+                                    <h4>初次相遇</h4>
+                                    <p>伊与埋的初次见面</p>
+                                </div>
                             </div>
-                            <div>
-                                <div class="character-name">伊 (YI)</div>
-                                <div class="character-role">后辈 · 香影极端洁癖老师</div>
+                            
+                            <div class="gallery-item">
+                                <img src="微信图片_20251215232825_632_13.png" width="1200" height="800" alt=""/>
+                                <div class="gallery-caption">
+                                    <h4>欲擒故纵</h4>
+                                    <p>伊故意说埋是她对家</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="character-desc">
-                            <p>16岁，沉默寡言的香影老师，入坑姜饼人王国一年。被前辈埋的专业能力和温柔内心所吸引，不知不觉中陷入了暗恋。</p>
-                            <p>努力提升自己的写瓜条能力，希望能得到埋的认可。总是找卧底与埋接触，但又害怕自己的卧底被发现。喜欢涩涩，养了一个军pa私设。</p>
+                            
+                            <div class="gallery-item">
+                                <img src="微信图片_20251215232825_633_13.png" width="1200" height="800" alt=""/>
+                                <div class="gallery-caption">
+                                    <h4>瓜条标题</h4>
+                                    <p>瓜条大战时伊偷偷暗示埋</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <img src="微信图片_20251215232826_634_13.png" width="1200" height="800" alt=""/>
+                                <div class="gallery-caption">
+                                    <h4>砰砰砰时刻</h4>
+                                    <p>两人一起砰砰砰到深夜</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <img src="微信图片_20251215232827_635_13.png" width="1200" height="800" alt=""/>
+                                <div class="gallery-caption">
+                                    <h4>赠送父母</h4>
+                                    <p>好心的埋试图将自己的父母送给伊</p>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <img src="微信图片_20251215232850_636_13.png" width="1216" height="894" alt=""/>
+                                <div class="gallery-caption">
+                                    <h4>免费赠图</h4>
+                                    <p>埋精心为伊制作的幽默梗图</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 第三页：图片库 -->
-            <div class="tab-content" id="tab3">
-                <h2 class="page-title">图片库</h2>
-                <p style="text-align: center; margin-bottom: 30px; color: #666;">以下是为本网站展示的精美插图，展示了故事中的关键场景</p>
                 
-                <div class="gallery-container">
-                    <div class="gallery-grid">
-                        <div class="gallery-item">
-                           <img src="微信图片_20251215232824_631_13.png" width="1200" height="800" alt=""/>
-                            <div class="gallery-caption">
-                              <h4>初次相遇</h4>
-                                <p>伊与埋的初次见面</p>
+                <!-- 第四页：视频内容 -->
+                <div class="tab-content" id="tab4">
+                    <h2 class="page-title">视频内容</h2>
+                    <p style="text-align: center; margin-bottom: 30px; color: #666;">观看本网站的宣传视频和相关内容</p>
+                    
+                    <div class="video-container">
+                        <div class="video-grid">
+                            <div class="video-item">
+                                <div class="video-player">
+                                    <iframe src="微信视频2025-12-16_150922_305.mp4" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h4>网站预告片</h4>
+                                    <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》网站官方预告片，首次公开精彩片段。</p>
+                                    <span class="video-duration">00:16</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item">
-                            <img src="微信图片_20251215232825_632_13.png" width="1200" height="800" alt=""/>
-                            <div class="gallery-caption">
-                              <h4>欲擒故纵</h4>
-                                <p>伊故意说埋是她对家</p>
+                            
+                            <div class="video-item">
+                                <div class="video-player">
+                                    <iframe src="微信视频2025-12-16_153218_128.mp4" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h4>精美梗图</h4>
+                                    <p>伟大的，温柔的埋师亲手制作梗图，分享了伊师到处毕业人和幕后推手颂师。</p>
+                                    <span class="video-duration">00:12</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item">
-                          <img src="微信图片_20251215232825_633_13.png" width="1200" height="800" alt=""/>
-                            <div class="gallery-caption">
-                              <h4>瓜条标题</h4>
-                                <p>瓜条大战时伊偷偷暗示埋</p>
+                            
+                            <div class="video-item">
+                                <div class="video-player">
+                                    <iframe src="微信视频2025-12-16_144802_833.mp4" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h4>制作花絮</h4>
+                                    <p>视频制作过程的幕后花絮，展示从剪辑软件到完整视频的创作历程。</p>
+                                    <span class="video-duration">00:22</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item">
-                      <img src="微信图片_20251215232826_634_13.png" width="1200" height="800" alt=""/>
-                            <div class="gallery-caption">
-                              <h4>砰砰砰时刻</h4>
-                                <p>两人一起砰砰砰到深夜</p>
+                            
+                            <div class="video-item">
+                                <div class="video-player">
+                                    <iframe src="微信视频2025-12-16_144237_772.mp4" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h4>主题曲MV</h4>
+                                    <p>作品主题曲「伊爱上了埋」完整版音乐视频，由黑影牛奶饼干（英配）演唱。</p>
+                                    <span class="video-duration">4:33</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item">
-                            <img src="微信图片_20251215232827_635_13.png" width="1200" height="800" alt=""/>
-                            <div class="gallery-caption">
-                              <h4>赠送父母</h4>
-                                <p>好心的埋试图将自己的父母送给伊</p>
+                            
+                            <div class="video-item">
+                                <div class="video-player">
+                                    <iframe src="微信视频2025-12-16_141546_322.mp4" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h4>粉丝反应视频</h4>
+                                    <p>粉丝看到伊给埋写的瓜条的反应和评论合集。</p>
+                                    <span class="video-duration">00:34</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="gallery-item">
-                            <img src="微信图片_20251215232850_636_13.png" width="1216" height="894" alt=""/>
-                            <div class="gallery-caption">
-                              <h4>免费赠图</h4>
-                                <p>埋精心为伊制作的幽默梗图</p>
+                            
+                            <div class="video-item">
+                                <div class="video-player">
+                                    <iframe src="微信视频2025-12-16_154305_746.mp4" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="video-info">
+                                    <h4>老师介绍视频</h4>
+                                    <p>详细介绍两位老师埋和伊的性格特点、背景故事。</p>
+                                    <span class="video-duration">6:45</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 第四页：视频内容 -->
-            <div class="tab-content" id="tab4">
-                <h2 class="page-title">视频内容</h2>
-                <p style="text-align: center; margin-bottom: 30px; color: #666;">观看本网站的宣传视频和相关内容</p>
                 
-                <div class="video-container">
-                    <div class="video-grid">
-                        <div class="video-item">
-                           <div class="video-player">
-                                <iframe src="微信视频2025-12-16_150922_305.mp4" frameborder="0" allowfullscreen></iframe>
-                         </div>
-                            <div class="video-info">
-                                <h4>网站预告片</h4>
-                                <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》网站官方预告片，首次公开精彩片段。</p>
-                                <span class="video-duration">00:16</span>
-                            </div>
-                        </div>
-                        
-                        <div class="video-item">
-                             <div class="video-player">
-                                <iframe src="微信视频2025-12-16_153218_128.mp4" frameborder="0" allowfullscreen></iframe>
-                         </div>
-                            <div class="video-info">
-                                <h4>精美梗图</h4>
-                                <p>伟大的，温柔的埋师亲手制作梗图，分享了伊师到处毕业人和幕后推手颂师。</p>
-                                <span class="video-duration">00:12</span>
-                            </div>
-                        </div>
-                        
-                        <div class="video-item">
-                           <div class="video-player">
-                                <iframe src="微信视频2025-12-16_144802_833.mp4" frameborder="0" allowfullscreen></iframe>
-                         </div>
-                            <div class="video-info">
-                                <h4>制作花絮</h4>
-                                <p>视频制作过程的幕后花絮，展示从剪辑软件到完整视频的创作历程。</p>
-                                <span class="video-duration">00:22</span>
-                            </div>
-                        </div>
-                        
-                        <div class="video-item">
-                           <div class="video-player">
-                                <iframe src="微信视频2025-12-16_144237_772.mp4" frameborder="0" allowfullscreen></iframe>
-                         </div>
-                            <div class="video-info">
-                                <h4>主题曲MV</h4>
-                                <p>作品主题曲「伊爱上了埋」完整版音乐视频，由黑影牛奶饼干（英配）演唱。</p>
-                                <span class="video-duration">4:33</span>
-                            </div>
-                        </div>
-                        
-                        <div class="video-item">
-                           <div class="video-player">
-                                <iframe src="微信视频2025-12-16_141546_322.mp4" frameborder="0" allowfullscreen></iframe>
-                         </div>
-                            <div class="video-info">
-                                <h4>粉丝反应视频</h4>
-                                <p>粉丝看到伊给埋写的瓜条的反应和评论合集。</p>
-                                <span class="video-duration">00:34</span>
-                            </div>
-                        </div>
-                        
-                        <div class="video-item">
-                            <div class="video-player">
-                                <iframe src="微信视频2025-12-16_154305_746.mp4" frameborder="0" allowfullscreen></iframe>
-                         </div>
-                            <div class="video-info">
-                                <h4>老师介绍视频</h4>
-                                <p>详细介绍两位老师埋和伊的性格特点、背景故事。</p>
-                                <span class="video-duration">6:45</span>
-                            </div>
+                <!-- 第五页：心动互动 -->
+                <div class="tab-content" id="tab5">
+                    <h2 class="page-title">心动互动</h2>
+                    <div class="interactive-content">
+                        <div class="heart-counter">
+                            <h3>为这段暗恋故事增加心跳指数</h3>
+                            <p>点击下面的按钮，为埋前辈和伊后辈的爱情加油！每点击一次，代表他们的关系更近一步。</p>
+                            <div id="heart-display">❤️ 0</div>
+                            <p>当前故事关系阶段：<span id="relationship-stage">埋在老福特刷到了伊，埋单方面喜欢伊的正常画</span></p>
+                            <button id="heart-button">增加心动值</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 第五页：互动 -->
-            <div class="tab-content" id="tab5">
-                <h2 class="page-title">心动互动</h2>
-                <div class="interactive-content">
-                    <div class="heart-counter">
-                        <h3>为这段暗恋故事增加心跳指数</h3>
-                        <p>点击下面的按钮，为埋前辈和伊后辈的爱情加油！每点击一次，代表他们的关系更近一步。</p>
-                        <div id="heart-display">❤️ 0</div>
-                        <p>当前故事关系阶段：<span id="relationship-stage">埋在老福特刷到了伊，埋单方面喜欢伊的正常画</p>
-                        <button id="heart-button">增加心动值</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                
+                <!-- 第六页：文章专栏 -->
+                <div class="tab-content" id="tab6">
+                    <h2 class="page-title">文章专栏</h2>
+                    <div class="article-columns-container">
+                        <!-- 栏目1：埋的个人经历 -->
+                        <section class="article-column" id="column-experience">
+                            <h3><i class="fas fa-book-open"></i> 埋的个人经历</h3>
+                            <div class="text-content">
+                                <p>这里开始写你的个人经历文章...例如，你可以讲述你是如何开始画画、如何接触到这个圈子等等。</p>
+                                <!-- 图片插入点1 -->
+                                <div class="img-insert-point" data-img="experience1.jpg" data-title="第一张回忆">(点击这里插入图片1)</div>
+                                <p>继续你的文章叙述...</p>
+                                <!-- 图片插入点2 -->
+                                <div class="img-insert-point" data-img="experience2.jpg" data-title="第二张回忆">(点击这里插入图片2)</div>
+                                <p>更多的故事和回忆...</p>
+                                <div class="img-insert-point" data-img="experience3.jpg" data-title="第三张回忆">(点击这里插入图片3)</div>
+                                <p>继续写...</p>
+                                <div class="img-insert-point" data-img="experience4.jpg" data-title="第四张回忆">(点击这里插入图片4)</div>
+                                <p>最后的故事...</p>
+                                <div class="img-insert-point" data-img="experience5.jpg" data-title="第五张回忆">(点击这里插入图片5)</div>
+                            </div>
+                        </section>
 
-    <!-- 页脚 -->
-    <footer id="footer">
-        <div class="container">
+                        <!-- 栏目2：埋对于瓜条的看法 -->
+                        <section class="article-column" id="column-opinion">
+                            <h3><i class="fas fa-comment-dots"></i> 埋对于瓜条的看法</h3>
+                            <div class="text-content">
+                                <p>这里写你对瓜条文化的完整看法、趣事或者分析...</p>
+                                <p>瓜条其实就是网络上的一种匿名爆料或讨论形式，有时候很有趣，有时候也会让人困扰。我个人觉得，只要不涉及人身攻击和恶意造谣，瓜条也是一种社区交流的方式。</p>
+                                <p>文章结尾...</p>
+                                <!-- 改进的互动西瓜 -->
+                                <div class="watermelon-interactive">
+                                    <h4>瓜条态度测试器</h4>
+                                    <p>点击下面的西瓜，表达你对瓜条的态度！</p>
+                                    <div class="watermelon" id="clickable-watermelon">
+                                        <div class="watermelon-body">
+                                            <div class="rind"></div>
+                                            <div class="flesh">
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                            </div>
+                                        </div>
 
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>关于作者</h3>
-                    <p>爱吃饼干的埋致力于创作最动人的恋爱故事，带给读者心跳加速的阅读体验。</p>
+                                    </div>
+                                    <p>已敲击西瓜：<span id="whack-count">0</span> 次</p>
+                                    <div class="watermelon-stage">
+                                        当前阶段：<span id="watermelon-stage">对瓜条无感</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 栏目3：匿名提问 -->
+                        <section class="article-column" id="column-qa">
+                            <h3><i class="fas fa-question-circle"></i> 匿名提问</h3>
+                            <div class="qna-container">
+                                <div class="new-question">
+                                    <textarea id="new-question-text" placeholder="有什么想问埋的吗？"></textarea>
+                                    <button id="submit-question">提交问题</button>
+                                </div>
+                                <div class="questions-list" id="questions-list">
+                                    <!-- 问题列表会通过JS动态加载到这里 -->
+                                    <p>正在加载问题...</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 栏目4：埋伊CP投稿专栏 -->
+                        <section class="article-column submission-column" id="column-submission">
+                            <h3><i class="fas fa-envelope"></i> 埋伊CP文投稿</h3>
+                            <div class="text-content">
+                                <div class="submission-info">
+                                    <p>欢迎各位饼干老师投稿关于埋伊CP的原创文章！</p>
+                                    <p>无论是甜蜜日常、浪漫故事还是脑洞大开的情节，我们都非常期待看到您的创作！</p>
+                                    <p>投稿邮箱地址：</p>
+                                    <div class="email-address">maiyi_love_submission@example.com</div>
+                                    <p>投稿要求：</p>
+                                    <ul style="padding-left: 20px; margin-top: 10px;">
+                                        <li>主题需与埋伊CP相关</li>
+                                        <li>内容健康，不涉及敏感话题</li>
+                                        <li>原创作品，不得抄袭</li>
+                                        <li>字数建议在1000-5000字之间</li>
+                                    </ul>
+                                </div>
+                                <div class="encouragement">
+                                    ❤️ 期待看到您的精彩作品！让我们一起为埋伊CP创造更多美好的故事！ ❤️
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <!-- 栏目5：埋伊CP文投稿展示 -->
+                        <section class="article-column submission-display-column" id="column-submission-display">
+                            <h3><i class="fas fa-cookie-bite"></i> 埋伊CP文投稿展示 <span class="badge" style="background:#e86a92;color:white;padding:5px 10px;border-radius:10px;font-size:0.8rem;">饼干排行榜</span></h3>
+                            <div class="rankings-header" style="margin-bottom:20px; padding:15px; background:#fff; border-radius:10px; border:2px solid #ffe4ec;">
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <div>
+                                        <h4 style="color:#e86a92; margin-bottom:5px;">🏆 饼干排行榜规则</h4>
+                                        <p style="color:#666; font-size:0.95rem;">前三名投稿将获得特别饼干装饰！根据点赞、评论和内容质量综合评分。</p>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <div style="font-size:2rem;">🍪</div>
+                                        <div style="color:#e86a92; font-weight:bold;">饼干奖励</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="rankings-list" id="submissions-list">
+                                <!-- 投稿内容将通过JS动态生成 -->
+                                <div class="no-submissions" id="no-submissions-msg">
+                                    <i class="fas fa-spinner fa-spin"></i> 正在加载投稿作品...
+                                </div>
+                            </div>
+                            
+                            <div class="rankings-footer" style="margin-top:30px; padding:15px; background:#fff9fb; border-radius:10px; text-align:center; border:1px dashed #ffe4ec;">
+                                <p style="color:#666; margin-bottom:10px;">
+                                    <i class="fas fa-info-circle"></i> 投稿展示每周更新一次，期待你的作品上榜！
+                                </p>
+                                <div style="display:flex; justify-content:center; gap:20px; font-size:0.9rem;">
+                                    <span><i class="fas fa-cookie"></i> 🥇 金牌饼干：综合评分95+</span>
+                                    <span><i class="fas fa-cookie"></i> 🥈 银牌饼干：综合评分85-94</span>
+                                    <span><i class="fas fa-cookie"></i> 🥉 铜牌饼干：综合评分75-84</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 栏目6：埋伊CP官文 (默认隐藏，需要密码) -->
+                        <section class="article-column locked-column" id="column-fanfic">
+                            <h3><i class="fas fa-lock"></i> 埋伊CP官文 <small>(需密码解锁)</small></h3>
+                            <div class="password-prompt">
+                                <input type="password" id="fanfic-password" placeholder="请输入密码">
+                                <button id="unlock-fanfic">解锁查看</button>
+                                <p id="password-hint"></p>
+                            </div>
+							 <!-- 添加密码提示 -->
+            <div style="margin-top: 20px; padding: 15px; background: #fff9fb; border-radius: 10px; border: 1px dashed #ffe4ec;">
+                <p style="margin: 0; color: #666; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> 提示：埋伊CP官文密码是 <strong>埋伊99</strong>
+                </p>
+            </div>
+                            <div class="fanfic-content" style="display:none;">
+                                <h4>第一章：意外的瓜条</h4>
+                                <p>深夜，埋正在刷着LOFTER，突然看到一条关于自己的瓜条。点开一看，标题赫然写着："震惊！前辈埋竟然偷偷关注后辈伊的小号！"</p>
+                                
+                                <p>埋的心跳漏了一拍。她确实有关注伊的小号，但那只是因为伊的画技实在太好了，让她忍不住想要学习。没想到这竟然被人发现了，还做成了瓜条。</p>
+                                
+                                <p>更让她惊讶的是，瓜条下面竟然有伊的回复："前辈如果喜欢我的画，可以直接告诉我，不用偷偷关注。"</p>
+                                
+                                <h4>第二章：深夜的对话</h4>
+                                <p>埋犹豫了很久，最终还是给伊发了私信："那个...瓜条你看到了？"</p>
+                                
+                                <p>不到一分钟，伊就回复了："看到了。前辈真的在关注我吗？"</p>
+                                
+                                <p>埋的脸瞬间红了，手指在键盘上停留了很久，终于打出一行字："你的画...很好看。"</p>
+                                
+                                <p>这次伊过了几分钟才回复："前辈的画更好看。我一直...很喜欢前辈的画风。"</p>
+                                
+                                <h4>第三章：心跳的告白</h4>
+                                <p>从那天起，埋和伊开始经常聊天。她们聊画画，聊生活，聊对家的趣事。埋发现伊并不像表面上那么高冷，反而很有趣，很温柔。</p>
+                                
+                                <p>直到有一天，伊突然发来一条消息："前辈，我可能要毕业了。"</p>
+                                
+                                <p>埋的心一沉："为什么？"</p>
+                                
+                                <p>"因为...我发现我好像喜欢上前辈了。"伊的回复让埋愣住了，"我知道这样不对，我们是对家，但我控制不住自己..."</p>
+                                
+                                <p>埋看着屏幕，心跳如鼓。她深吸一口气，回复道："其实...我也一直很在意你。"</p>
+                                
+                                <h4>第四章：甜蜜的烦恼</h4>
+                                <p>从那以后，两人的关系变得微妙起来。她们还是会在公开场合互怼，但私下里却越来越亲密。</p>
+                                
+                                <p>伊开始给埋画专属的头像，埋也会在伊生病时提醒她吃药。她们都知道这段感情很危险，一旦被发现，可能会引起轩然大波。</p>
+                                
+                                <p>但爱情就是这样，越是危险，越是甜蜜。</p>
+                                
+                                <h4>第五章：未来的约定</h4>
+                                <p>某个深夜，埋和伊视频通话。屏幕那头的伊显得有些紧张："前辈，如果...如果我们的事被发现了怎么办？"</p>
+                                
+                                <p>埋笑了笑："那就承认呗。反正...我早就想告诉大家，我喜欢你了。"</p>
+                                
+                                <p>伊的眼睛亮了："真的吗？"</p>
+                                
+                                <p>"嗯。"埋点头，"不过在那之前，我们得先想好怎么应对那些瓜条。"</p>
+                                
+                                <p>两人相视而笑。是啊，她们的爱情故事，注定会充满瓜条和争议。但只要彼此相爱，就没有什么好怕的。</p>
+                                
+                                <p style="text-align: center; color: #e86a92; font-weight: bold; margin-top: 30px;">
+                                    --- 未完待续 ---<br>
+                                    埋伊的故事，才刚刚开始...
+                                </p>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>网站信息</h3>
-                    <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》</p>
-                    <p>形式：HTML5网站</p>
-                    <p>发行日期：2025年12月15日</p>
-                </div>
-                <div class="footer-section">
-                    <h3>关注爱吃饼干的埋</h3>
-                    <p>以获取最新作品信息与更新</p>
-                    <p>小红书个人主页:  https://xhslink.com/m/1uUQENJsYrF</p>
-					<p>哔哩哔哩个人主页： https://b23.tv/b6U7dq3</p>
-					<p>LOFTER个人主页： https://xinjinjumin660701183230.lofter.com</p>
+                
+                <!-- 第七页：跑酷游戏（改进版：收集饼干、无限跳跃、无限场景、对话框聊天） -->
+                <div class="tab-content" id="tab7">
+                    <h2 class="page-title">饼干收集跑酷游戏</h2>
+                    <div id="parkour-game-container">
+                        <div class="game-info-panel">
+                            <h3>收集饼干，躲避伊的瓜条！</h3>
+                            <p>控制埋收集饼干，躲避伊扔过来的瓜条！按空格键无限跳跃！</p>
+                            <div class="game-stats">
+                                <div class="game-stat">
+                                    <h4>分数</h4>
+                                    <p id="game-score">0</p>
+                                </div>
+                                <div class="game-stat">
+                                    <h4>最高分</h4>
+                                    <p id="game-highscore">0</p>
+                                </div>
+                                <div class="game-stat">
+                                    <h4>收集饼干</h4>
+                                    <p id="game-cookies">0</p>
+                                </div>
+                                <div class="game-stat">
+                                    <h4>游戏状态</h4>
+                                    <p id="game-status">等待开始</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="game-canvas-container">
+                            <canvas id="game-canvas" width="800" height="400"></canvas>
+                            <!-- 游戏内对话框 -->
+                            <div id="game-dialog" class="game-dialog">
+                                <div id="dialog-speaker" class="dialog-speaker"></div>
+                                <p id="dialog-text"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="game-controls">
+                            <button id="start-game-btn" class="game-btn">开始游戏</button>
+                            <button id="pause-game-btn" class="game-btn secondary">暂停游戏</button>
+                            <button id="restart-game-btn" class="game-btn secondary">重新开始</button>
+                        </div>
+                        
+                        <div class="game-instructions">
+                            <h4>游戏说明：</h4>
+                            <p>1. 游戏目标：控制埋（粉色饼干）收集金色饼干，躲避伊（绿色饼干）扔过来的瓜条</p>
+                            <p>2. 控制方式：按<strong>空格键</strong>让埋无限跳跃（可以一直按空格在空中连续跳跃）</p>
+                            <p>3. 移动方式：<strong>方向键/AD键</strong>左右移动，触摸/点击屏幕左右半屏移动</p>
+                            <p>4. 游戏规则：每收集一个饼干得50分，被瓜条击中损失1生命，共3生命</p>
+                            <p>5. 游戏场景会无限生成，饼干会不断出现，尽量收集更多饼干！</p>
+                            <p>6. 伊会不断追踪你并扔瓜条，小心躲避！</p>
+                            <p>7. 在追逐过程中，埋和伊会有甜蜜的对话哦~</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2025 爱吃饼干的埋 版权所有 | 《作为前辈的埋，被后辈伊暗恋上了！？！？》是爱吃饼干的埋创建的虚拟网站</p>
-            </div>
-        </div>
-    </footer>
+        </section>
 
-<script>
-        // 分页标签切换功能
-        document.querySelectorAll('.tab-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // 移除所有标签的active类
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                // 隐藏所有内容
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // 激活当前标签
-                this.classList.add('active');
-                
-                // 显示对应内容
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-                
-                // 更新导航栏状态
-                updateNavActiveState();
-            });
-        });
+        <!-- 页脚 -->
+        <footer id="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>关于作者</h3>
+                        <p>爱吃饼干的埋致力于创作最动人的恋爱故事，带给读者心跳加速的阅读体验。</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>网站信息</h3>
+                        <p>《作为前辈的埋，被后辈伊暗恋上了！？！？》</p>
+                        <p>形式：HTML5网站</p>
+                        <p>发行日期：2025年12月15日</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>关注爱吃饼干的埋</h3>
+                        <p>以获取最新作品信息与更新</p>
+                        <p>小红书个人主页:  https://xhslink.com/m/1uUQENJsYrF</p>
+                        <p>哔哩哔哩个人主页： https://b23.tv/b6U7dq3</p>
+                        <p>LOFTER个人主页： https://xinjinjumin660701183230.lofter.com</p>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>© 2025 爱吃饼干的埋 版权所有 | 《作为前辈的埋，被后辈伊暗恋上了！？！？》是爱吃饼干的埋创建的虚拟网站</p>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- 网站主内容结束 -->
+    
+    <!-- 图片弹窗容器 -->
+    <div class="img-modal">
+        <span class="close-modal">&times;</span>
+        <img class="img-modal-content" id="modal-img">
+
+        <div id="modal-title"></div>
+    </div>
+
+    <script>
+    // ========== 网站登录与权限控制系统 ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM加载完成，开始初始化登录系统");
         
-        // 更新导航栏状态
-        function updateNavActiveState() {
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#pagination') {
-                    link.classList.add('active');
-                }
-            });
+        // 检查是否已经登录过
+        const isDeveloper = sessionStorage.getItem('isDeveloper') === 'true';
+        const hasVisited = sessionStorage.getItem('hasVisited');
+        
+        console.log("检查sessionStorage: hasVisited =", hasVisited, "isDeveloper =", isDeveloper);
+        
+        // 如果已经登录过（无论哪种模式），直接隐藏登录界面
+        if (hasVisited) {
+            console.log("检测到之前已登录，跳过登录界面");
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            initAppWithMode(isDeveloper);
+            return;
         }
         
-        // 心动计数器交互
-        let heartCount = 0;
-        const heartButton = document.getElementById('heart-button');
-        const heartDisplay = document.getElementById('heart-display');
-        const relationshipStage = document.getElementById('relationship-stage');
+        console.log("首次访问，显示登录界面");
         
-        const stages = [
-            {threshold: 0, stage: "埋和伊一开始是粉丝与女神"},
-            {threshold: 5, stage: "后来两人开始注意到对方"},
-            {threshold: 10, stage: "埋和伊在b站评论区交流"},
-            {threshold: 20, stage: "伊是埋的前女神"},
-            {threshold: 30, stage: "伊看到埋牛波一的live2d技术，开始暗生情愫"},
-            {threshold: 40, stage: "埋察觉到了伊的心意"},
-            {threshold: 50, stage: "双方开始进入暧昧阶段"},
-            {threshold: 70, stage: "可惜是对家，但互相喜欢"},
-            {threshold: 100, stage: "所以两人只能用瓜条乱飞的方式来表达对对方的爱意了"},
-			{threshold: 110, stage: "两人日常在大群里面拌嘴对方"},
-			{threshold: 120, stage: "两人在互闹小脾气，而两位老师都认识的粉丝要开心死了"},
-			{threshold: 130, stage: "有人假装和埋互不认识来发瓜条"},
-			{threshold: 140, stage: "抖音神人二年级小学生cookie用没有任何聊天证据的引战瓜条来撮合两人"},
-			{threshold: 150, stage: "本来埋不想理伊的，但是当埋看到爱神的瓜条里面有提到伊，于是埋觉得这是伊叫爱神发的瓜条，埋很感动，想念起了伊"},
-			{threshold: 160, stage: "埋太感动了，于是在大群里给伊发了好多好多条电棍语音来表达埋对伊的爱意"},
-			{threshold: 170, stage: "埋在大群里发完电棍语音后还是感觉很感动"},
-			{threshold: 180, stage: "于是埋决定给伊做一个恋爱网站来纪念她们过去的日子"},
-			{threshold: 190, stage: "埋修改了30多次网站代码"},
-			{threshold: 200, stage: "埋终于做好恋爱网站了！"},
-        ];
+        // 绑定游客模式按钮
+        document.getElementById('guestMode').addEventListener('click', function() {
+            console.log("点击游客模式按钮");
+            enterVisitorMode();
+        });
         
-        heartButton.addEventListener('click', function() {
-            heartCount++;
+        // 绑定开发者模式按钮
+        document.getElementById('devModeBtn').addEventListener('click', function() {
+            console.log("点击开发者模式按钮");
+            document.getElementById('devPasswordPrompt').style.display = 'block';
+            this.style.display = 'none';
+            document.getElementById('guestMode').style.display = 'none';
+            // 自动聚焦到密码输入框
+            document.getElementById('devPassword').focus();
+        });
+        
+        // 绑定返回按钮
+        document.getElementById('backToMode').addEventListener('click', function() {
+            console.log("点击返回按钮");
+            document.getElementById('devPasswordPrompt').style.display = 'none';
+            document.getElementById('devModeBtn').style.display = 'block';
+            document.getElementById('guestMode').style.display = 'block';
+            document.getElementById('passwordError').textContent = '';
+        });
+        
+        // 绑定开发者密码提交
+        document.getElementById('submitDevPassword').addEventListener('click', function() {
+            console.log("提交开发者密码");
+            const password = document.getElementById('devPassword').value;
+            const correctPassword = '我来找伊砰砰砰了~~~';
+            
+            if (password === correctPassword) {
+                console.log("密码正确，进入开发者模式");
+                enterDeveloperMode();
+            } else {
+                console.log("密码错误");
+                document.getElementById('passwordError').textContent = '密码不对哦，再想想？';
+                document.getElementById('devPassword').value = '';
+                document.getElementById('devPassword').focus();
+            }
+        });
+        
+        // 回车键提交密码
+        document.getElementById('devPassword').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                document.getElementById('submitDevPassword').click();
+            }
+        });
+        
+        // 进入游客模式
+        function enterVisitorMode() {
+            console.log("进入游客模式");
+            sessionStorage.setItem('hasVisited', 'true');
+            sessionStorage.setItem('isDeveloper', 'false');
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            initAppWithMode(false);
+        }
+        
+        // 进入开发者模式
+        function enterDeveloperMode() {
+            console.log("进入开发者模式");
+            sessionStorage.setItem('hasVisited', 'true');
+            sessionStorage.setItem('isDeveloper', 'true');
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            initAppWithMode(true);
+        }
+        
+        // 切换模式按钮功能
+        document.getElementById('switchModeBtn').addEventListener('click', function() {
+            console.log("点击切换模式按钮");
+            // 直接清除所有会话存储
+            sessionStorage.clear();
+            
+            // 隐藏主内容，显示登录界面
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'flex';
+            
+            // 重置登录界面状态
+            document.getElementById('devPasswordPrompt').style.display = 'none';
+            document.getElementById('devModeBtn').style.display = 'block';
+            document.getElementById('guestMode').style.display = 'block';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('devPassword').value = '';
+        });
+        
+        // 根据模式初始化应用
+        function initAppWithMode(isDev) {
+            console.log(`进入${isDev ? '开发者' : '游客'}模式`);
+            
+            // 显示开发者模式标记
+            if (isDev) {
+                document.getElementById('devModeIndicator').style.display = 'inline-block';
+            }
+            
+            // 初始化网站原有功能
+            initOriginalFeatures();
+            
+            // 初始化文章专栏功能（传入开发者权限）
+            initArticleFeatures(isDev);
+            
+            // 初始化跑酷游戏（改进版：收集饼干、无限跳跃、无限场景、音效、对话框）
+            initParkourGame();
+        }
+        
+        // 初始化网站原有功能
+        function initOriginalFeatures() {
+            console.log("初始化网站原有功能");
+            
+            // 分页标签切换功能
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有标签的active类
+                    document.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // 隐藏所有内容
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // 激活当前标签
+                    this.classList.add('active');
+                    
+                    // 显示对应内容
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // 更新导航栏状态
+                    updateNavActiveState();
+                });
+            });
+            
+            // 更新导航栏状态
+            function updateNavActiveState() {
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#pagination') {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // 心动计数器交互
+            const HEART_STORAGE_KEY = 'maiyi_heart_count';
+            let heartCount = parseInt(localStorage.getItem(HEART_STORAGE_KEY)) || 0;
+            const heartButton = document.getElementById('heart-button');
+            const heartDisplay = document.getElementById('heart-display');
+            const relationshipStage = document.getElementById('relationship-stage');
+            
+            // 初始化显示
             heartDisplay.textContent = `❤️ ${heartCount}`;
             
-            // 更新关系阶段
-            let currentStage = stages[0].stage;
-            for (let i = stages.length - 1; i >= 0; i--) {
-                if (heartCount >= stages[i].threshold) {
-                    currentStage = stages[i].stage;
-                    break;
+            const stages = [
+                {threshold: 0, stage: "埋和伊一开始是粉丝与女神"},
+                {threshold: 5, stage: "后来两人开始注意到对方"},
+                {threshold: 10, stage: "埋和伊在b站评论区交流"},
+                {threshold: 20, stage: "伊是埋的前女神"},
+                {threshold: 30, stage: "伊看到埋牛波一的live2d技术，开始暗生情愫"},
+                {threshold: 40, stage: "埋察觉到了伊的心意"},
+                {threshold: 50, stage: "双方开始进入暧昧阶段"},
+                {threshold: 70, stage: "可惜是对家，但互相喜欢"},
+                {threshold: 100, stage: "所以两人只能用瓜条乱飞的方式来表达对对方的爱意了"},
+                {threshold: 110, stage: "两人日常在大群里面拌嘴对方"},
+                {threshold: 120, stage: "两人在互闹小脾气，而两位老师都认识的粉丝要开心死了"},
+                {threshold: 130, stage: "有人假装和埋互不认识来发瓜条"},
+                {threshold: 140, stage: "抖音神人二年级小学生cookie用没有任何聊天证据的引战瓜条来撮合两人"},
+                {threshold: 150, stage: "本来埋不想理伊的，但是当埋看到爱神的瓜条里面有提到伊，于是埋觉得这是伊叫爱神发的瓜条，埋很感动，想念起了伊"},
+                {threshold: 160, stage: "埋太感动了，于是在大群里给伊发了好多好多条电棍语音来表达埋对伊的爱意"},
+                {threshold: 170, stage: "埋在大群里发完电棍语音后还是感觉很感动"},
+                {threshold: 180, stage: "于是埋决定给伊做一个恋爱网站来纪念她们过去的日子"},
+                {threshold: 190, stage: "埋修改了30多次网站代码"},
+                {threshold: 200, stage: "埋终于做好恋爱网站了！"},
+            ];
+            
+            // 初始化时更新阶段显示
+            function updateHeartStage() {
+                let currentStage = stages[0].stage;
+                for (let i = stages.length - 1; i >= 0; i--) {
+                    if (heartCount >= stages[i].threshold) {
+                        currentStage = stages[i].stage;
+                        break;
+                    }
                 }
+                relationshipStage.textContent = currentStage;
             }
-            relationshipStage.textContent = currentStage;
             
-            // 添加动画效果
-            heartDisplay.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                heartDisplay.style.transform = 'scale(1)';
-            }, 200);
+            // 初始更新阶段
+            updateHeartStage();
             
-            // 每10次显示特别消息
-            if (heartCount % 10 === 0) {
-                const messages = [
-                    "伊的心跳加速了！",
-                    "埋开始注意到伊的不同",
-                    "两人的距离又近了一步",
-                    "社群的气氛变得微妙",
-                    "瓜条正在到处乱飞",
-					"伊正在和粉丝闹别扭",
-					"埋正在被求婚！",
-					"埋正在给伊制作精美梗图",
-					"伊觉得对家女神想和自己砰砰砰",
-					"伊害羞蕴含的在小红书帖子《黑春1的惊天地泣鬼神》简介里说“exr”（恶心人）（不可能是别人，只能是埋了）我会一直盯着你的",
-					"埋看到瓜条开始变的害羞了！更想砰砰砰伊了",
-					"埋被到处飞的瓜条害羞到了！于是做了恋爱网站~~~"
-                ];
-                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                alert(`特别事件：${randomMessage}`);
-            }
-        });
-        
-        // 平滑滚动导航
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
+            heartButton.addEventListener('click', function() {
+                heartCount++;
+                heartDisplay.textContent = `❤️ ${heartCount}`;
                 
-                if (targetId === '#home' || targetId === '#footer') {
-                    const targetElement = document.querySelector(targetId);
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // 更新导航栏状态
-                    const navLinks = document.querySelectorAll('nav a');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                } else if (targetId === '#pagination') {
-                    // 滚动到分页部分
-                    const targetElement = document.querySelector(targetId);
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // 更新导航栏状态
-                    const navLinks = document.querySelectorAll('nav a');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    
-                    // 激活第一个标签页
-                    setTimeout(() => {
-                        document.querySelectorAll('.tab-btn').forEach(btn => {
-                            btn.classList.remove('active');
-                        });
-                        document.querySelectorAll('.tab-content').forEach(content => {
-                            content.classList.remove('active');
-                        });
-                        
-                        document.querySelector('.tab-btn[data-tab="tab1"]').classList.add('active');
-                        document.getElementById('tab1').classList.add('active');
-                    }, 500);
+                // 保存到localStorage
+                localStorage.setItem(HEART_STORAGE_KEY, heartCount.toString());
+                
+                // 更新关系阶段
+                updateHeartStage();
+                
+                // 添加动画效果
+                heartDisplay.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    heartDisplay.style.transform = 'scale(1)';
+                }, 200);
+                
+                // 每10次显示特别消息
+                if (heartCount % 10 === 0) {
+                    const messages = [
+                        "伊的心跳加速了！",
+                        "埋开始注意到伊的不同",
+                        "两人的距离又近了一步",
+                        "社群的气氛变得微妙",
+                        "瓜条正在到处乱飞",
+                        "伊正在和粉丝闹别扭",
+                        "埋正在被求婚！",
+                        "埋正在给伊制作精美梗图",
+                        "伊觉得对家女神想和自己砰砰砰",
+                        "伊害羞蕴含的在小红书帖子《黑春1的惊天地泣鬼神》简介里说\"exr\"（恶心人）（不可能是别人，只能是埋了）我会一直盯着你的",
+                        "埋看到瓜条开始变的害羞了！更想砰砰砰伊了",
+                        "埋被到处飞的瓜条害羞到了！于是做了恋爱网站~~~"
+                    ];
+                    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                    alert(`特别事件：${randomMessage}`);
                 }
             });
-        });
-        
-        // 页面加载动画
-        window.addEventListener('load', function() {
+            
+            // 平滑滚动导航
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId === '#home' || targetId === '#footer') {
+                        const targetElement = document.querySelector(targetId);
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 更新导航栏状态
+                        const navLinks = document.querySelectorAll('nav a');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    } else if (targetId === '#pagination') {
+                        // 滚动到分页部分
+                        const targetElement = document.querySelector(targetId);
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 更新导航栏状态
+                        const navLinks = document.querySelectorAll('nav a');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // 激活第一个标签页
+                        setTimeout(() => {
+                            document.querySelectorAll('.tab-btn').forEach(btn => {
+                                btn.classList.remove('active');
+                            });
+                            document.querySelectorAll('.tab-content').forEach(content => {
+                                content.classList.remove('active');
+                            });
+                            
+                            document.querySelector('.tab-btn[data-tab="tab1"]').classList.add('active');
+                            document.getElementById('tab1').classList.add('active');
+                        }, 500);
+                    }
+                });
+            });
+            
+            // 页面加载动画
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.8s';
-            
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 100);
-        });
+        }
+        
+        // 初始化文章专栏功能
+        function initArticleFeatures(isDeveloperMode) {
+            console.log("初始化文章专栏功能，开发者模式:", isDeveloperMode);
+            
+            // 1. 图片弹窗功能
+            const imgModal = document.querySelector('.img-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // 为所有图片插入点绑定点击事件
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('img-insert-point')) {
+                    const imgSrc = e.target.getAttribute('data-img');
+                    const title = e.target.getAttribute('data-title');
+                    modalImg.src = imgSrc;
+                    modalTitle.textContent = title;
+                    imgModal.style.display = 'block';
+                }
+            });
+            closeModal.onclick = function() { imgModal.style.display = 'none'; };
+            window.onclick = function(event) { if (event.target == imgModal) { imgModal.style.display = 'none'; } };
+            
+            // 2. 改进的西瓜互动系统
+            const watermelon = document.getElementById('clickable-watermelon');
+            const whackCountEl = document.getElementById('whack-count');
+            const watermelonStageEl = document.getElementById('watermelon-stage');
+            
+            // 西瓜互动阶段定义
+            const watermelonStages = [
+                {threshold: 0, stage: "对瓜条无感", message: "点击西瓜来表达你对瓜条的态度吧！"},
+                {threshold: 5, stage: "有点好奇", message: "开始对瓜条产生兴趣了！"},
+                {threshold: 10, stage: "瓜条观察者", message: "你开始关注瓜条了！"},
+                {threshold: 20, stage: "瓜条爱好者", message: "你已经成为瓜条的忠实观众！"},
+                {threshold: 30, stage: "瓜条分析师", message: "你开始分析瓜条背后的故事了！"},
+                {threshold: 40, stage: "瓜条传播者", message: "你偶尔会分享有趣的瓜条！"},
+                {threshold: 50, stage: "瓜条达人", message: "你对瓜条了如指掌！"},
+                {threshold: 60, stage: "瓜条战士", message: "你会为喜欢的瓜条辩护！"},
+                {threshold: 70, stage: "瓜条大师", message: "你已经精通瓜条文化！"},
+                {threshold: 80, stage: "瓜条之王/后", message: "你是瓜条界的传奇人物！"},
+                {threshold: 90, stage: "瓜条之神", message: "你创造了新的瓜条传奇！"},
+                {threshold: 100, stage: "超越瓜条的存在", message: "你已经超越了瓜条本身！"}
+            ];
+            
+            // 西瓜点击时的弹窗消息
+            const watermelonMessages = [
+                "西瓜真甜！就像看到有趣的瓜条一样~",
+                "咔嚓！西瓜裂开的声音就像瓜条爆料的声音！",
+                "西瓜籽就像瓜条中的小细节，仔细看才有意思！",
+                "夏天的西瓜，冬天的瓜条，都是解闷的好东西！",
+                "这块西瓜真红，就像火爆的瓜条一样！",
+                "西瓜汁滴下来了，就像瓜条信息慢慢泄露出来~",
+                "这块西瓜特别甜，就像特别精彩的瓜条！",
+                "西瓜皮可以雕花，瓜条也可以加工成故事！",
+                "无籽西瓜就像没有后续的瓜条，少了点乐趣！",
+                "冰镇西瓜就像冷静吃瓜，保持理性！"
+            ];
+            
+            let whackCount = parseInt(localStorage.getItem('watermelonWhacks')) || 0;
+            whackCountEl.textContent = whackCount;
+            
+            // 根据点击次数更新阶段
+            function updateWatermelonStage() {
+                let currentStage = watermelonStages[0].stage;
+                for (let i = watermelonStages.length - 1; i >= 0; i--) {
+                    if (whackCount >= watermelonStages[i].threshold) {
+                        currentStage = watermelonStages[i].stage;
+                        break;
+                    }
+                }
+                watermelonStageEl.textContent = currentStage;
+            }
+            
+            // 初始化阶段显示
+            updateWatermelonStage();
+            
+            watermelon.addEventListener('click', function() {
+                whackCount++;
+                whackCountEl.textContent = whackCount;
+                localStorage.setItem('watermelonWhacks', whackCount);
+                
+                // 更新阶段
+                updateWatermelonStage();
+                
+                // 添加点击动画
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => { this.style.transform = 'scale(1)'; }, 200);
+                
+                // 每5次点击显示随机消息
+                if (whackCount % 5 === 0) {
+                    const randomMessage = watermelonMessages[Math.floor(Math.random() * watermelonMessages.length)];
+                    alert(`🍉 西瓜消息：${randomMessage}`);
+                }
+                
+                // 达到特定里程碑显示特殊消息
+                const milestones = [10, 25, 50, 75, 100];
+                if (milestones.includes(whackCount)) {
+                    let milestoneMessage = "";
+                    switch(whackCount) {
+                        case 10:
+                            milestoneMessage = "恭喜！你点击西瓜10次，正式成为瓜条观察者！";
+                            break;
+                        case 25:
+                            milestoneMessage = "哇！25次点击！你对瓜条的热情就像西瓜一样甜！";
+                            break;
+                        case 50:
+                            milestoneMessage = "里程碑！50次点击！你已经达到瓜条达人境界！";
+                            break;
+                        case 75:
+                            milestoneMessage = "惊人！75次点击！瓜条大师非你莫属！";
+                            break;
+                        case 100:
+                            milestoneMessage = "传奇！100次点击！你已经超越了瓜条本身！获得「西瓜战神」称号！";
+                            break;
+                    }
+                    setTimeout(() => { alert(`🎉 里程碑达成！\n${milestoneMessage}`); }, 300);
+                }
+            });
+            
+            // 3. 匿名提问系统 (使用localStorage持久化) - 开发者模式下可编辑/删除
+            const STORAGE_KEY = 'maiyi_questions_v3';
+            let questions = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            
+            // 随机生成提问者名字
+            function generateRandomName() {
+                const adjectives = ['害羞的', '好奇的', '路过的', '吃瓜的', '激动的', '隐身的', '冒泡的'];
+                const nouns = ['饼干', '网友', '粉丝', '路人甲', '小透明', '潜水员', '猹'];
+                return adjectives[Math.floor(Math.random() * adjectives.length)] + nouns[Math.floor(Math.random() * nouns.length)];
+            }
+            
+            // 渲染问题列表
+            function renderQuestions() {
+                const container = document.getElementById('questions-list');
+                if (questions.length === 0) {
+                    container.innerHTML = '<p>还没有问题，快来提问吧！</p>';
+                    return;
+                }
+                container.innerHTML = questions.map((q, qIndex) => `
+                    <div class="single-question" data-qid="${qIndex}">
+                        <div class="question-header">
+                            <span class="questioner">${q.author}</span>
+                            <span class="question-time">${q.time}</span>
+                            ${isDeveloperMode ? `<span class="delete-question-btn" onclick="window.deleteQuestion(${qIndex})"><i class="fas fa-trash-alt"></i> 删除问题</span>` : ''}
+                        </div>
+                        <div class="question-content" id="question-content-${qIndex}" contenteditable="${isDeveloperMode}" data-original="${q.content}">
+                            ${q.content}
+                        </div>
+                        ${isDeveloperMode ? `<button onclick="window.saveQuestionEdit(${qIndex})" style="background:#2ecc71; color:white; border:none; padding:5px 10px; border-radius:5px; margin-bottom:10px;">保存修改</button>` : ''}
+                        <div class="question-actions">
+                            <span class="like-btn ${q.liked ? 'liked' : ''}" onclick="window.toggleLike(${qIndex})">
+                                <i class="fas fa-heart"></i> <span class="like-count">${q.likes || 0}</span>
+                            </span>
+                            <span class="comment-btn" onclick="window.toggleComment(${qIndex})">
+                                <i class="fas fa-comment"></i> 评论(${q.comments ? q.comments.length : 0})
+                            </span>
+                        </div>
+                        <div class="comments-section" id="comments-${qIndex}" style="display:none;">
+                            ${(q.comments || []).map((c, cIndex) => `
+                                <div class="single-comment">
+                                    <span><strong>${c.author}</strong>: <span id="comment-content-${qIndex}-${cIndex}" contenteditable="${isDeveloperMode}" data-original="${c.content}">${c.content}</span></span>
+                                    ${isDeveloperMode ? `
+                                        <div>
+                                            <span class="edit-comment-btn" onclick="window.saveCommentEdit(${qIndex}, ${cIndex})"><i class="fas fa-save"></i> 保存</span>
+                                            <span class="delete-comment-btn" onclick="window.deleteComment(${qIndex}, ${cIndex})"><i class="fas fa-trash-alt"></i></span>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                            <div class="new-comment">
+                                <input type="text" id="comment-input-${qIndex}" placeholder="写下你的评论...">
+                                <button onclick="window.submitComment(${qIndex})">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // 提交新问题
+            document.getElementById('submit-question').addEventListener('click', function() {
+                const textarea = document.getElementById('new-question-text');
+                const content = textarea.value.trim();
+                if (!content) return alert('问题内容不能为空哦~');
+                const newQuestion = {
+                    content: content,
+                    author: generateRandomName(),
+                    time: new Date().toLocaleDateString('zh-CN') + ' ' + new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'}),
+                    likes: 0,
+                    liked: false,
+                    comments: []
+                };
+                questions.unshift(newQuestion); // 新问题放在最前面
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                renderQuestions();
+                textarea.value = ''; // 清空输入框
+            });
+            
+            // 点赞功能
+            window.toggleLike = function(qIndex) {
+                const question = questions[qIndex];
+                question.liked = !question.liked;
+                question.likes = (question.likes || 0) + (question.liked ? 1 : -1);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                renderQuestions();
+            };
+            
+            // 展开/收起评论
+            window.toggleComment = function(qIndex) {
+                const commentSection = document.getElementById(`comments-${qIndex}`);
+                commentSection.style.display = commentSection.style.display === 'none' ? 'block' : 'none';
+            };
+            
+            // 提交评论
+            window.submitComment = function(qIndex) {
+                const input = document.getElementById(`comment-input-${qIndex}`);
+                const content = input.value.trim();
+                if (!content) return;
+                if (!questions[qIndex].comments) questions[qIndex].comments = [];
+                questions[qIndex].comments.push({
+                    author: generateRandomName(),
+                    content: content
+                });
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                renderQuestions();
+                input.value = '';
+            };
+            
+            // 删除评论（仅开发者）
+            window.deleteComment = function(qIndex, cIndex) {
+                if (confirm('确定要删除这条评论吗？')) {
+                    questions[qIndex].comments.splice(cIndex, 1);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                    renderQuestions();
+                }
+            };
+            
+            // 保存评论编辑（仅开发者）
+            window.saveCommentEdit = function(qIndex, cIndex) {
+                const commentElement = document.getElementById(`comment-content-${qIndex}-${cIndex}`);
+                const newContent = commentElement.textContent.trim();
+                if (!newContent) return alert('评论内容不能为空！');
+                questions[qIndex].comments[cIndex].content = newContent;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                renderQuestions();
+            };
+            
+            // 删除问题（仅开发者）
+            window.deleteQuestion = function(qIndex) {
+                if (confirm('确定要删除这个问题吗？')) {
+                    questions.splice(qIndex, 1);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                    renderQuestions();
+                }
+            };
+            
+            // 保存问题编辑（仅开发者）
+            window.saveQuestionEdit = function(qIndex) {
+                const questionElement = document.getElementById(`question-content-${qIndex}`);
+                const newContent = questionElement.textContent.trim();
+                if (!newContent) return alert('问题内容不能为空！');
+                questions[qIndex].content = newContent;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+                renderQuestions();
+            };
+            
+            // 初始化时渲染问题列表
+            renderQuestions();
+            
+            // 4. CP官文密码验证
+            document.getElementById('unlock-fanfic').addEventListener('click', function() {
+                const input = document.getElementById('fanfic-password');
+                const hint = document.getElementById('password-hint');
+                if (input.value === '埋伊99') {
+                    document.querySelector('.fanfic-content').style.display = 'block';
+                    document.querySelector('.password-prompt').style.display = 'none';
+                    hint.textContent = '';
+                    // 添加解锁成功动画
+                    document.querySelector('.locked-column h3').innerHTML = '<i class="fas fa-unlock"></i> 埋伊CP官文 <small>(已解锁)</small>';
+                    document.querySelector('.locked-column h3').style.color = '#2ecc71';
+                } else {
+                    hint.textContent = '密码错误，再想想？';
+                    input.value = '';
+                }
+            });
+            
+            // 回车键解锁
+            document.getElementById('fanfic-password').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    document.getElementById('unlock-fanfic').click();
+                }
+            });
+            
+            // 5. 初始化埋伊CP文投稿展示
+            initSubmissionDisplay();
+        }
+        
+        function initSubmissionDisplay() {
+            console.log("初始化埋伊CP文投稿展示");
+            // 模拟投稿数据（实际应用中可以从服务器获取）
+            const submissionsData = [
+                {
+                    rank: 1,
+                    author: "暗恋伊的小饼干",
+                    title: "前辈的奶茶分我一半",
+                    content: "那是我们第一次说话，前辈递给我半杯奶茶，说『分你一半』。我的心跳漏了一拍，不是因为奶茶的甜，而是因为前辈微笑时眼里的光...从那天起，我开始收集前辈的一切，每一幅画，每一句话，每一个微笑。我知道这样很傻，但前辈就像阳光，让我忍不住想靠近。",
+                    likes: 520,
+                    comments: 131,
+                    date: "2025-12-14",
+                    score: 98
+                },
+                {
+                    rank: 2,
+                    author: "影子里的香草",
+                    title: "深夜的砰砰砰",
+                    content: "凌晨两点，前辈突然发来消息：『在吗？陪我砰砰砰到天亮。』那晚我们聊了很多，从画风到人生，从对家到CP。前辈说：『其实我知道你一直在看我。』我愣住了，原来我的小心思早就被发现了。前辈又说：『我也一直在注意你。』那一刻，凌晨的天空突然变得如此美丽...",
+                    likes: 419,
+                    comments: 89,
+                    date: "2025-12-12",
+                    score: 92
+                },
+                {
+                    rank: 3,
+                    author: "白奶激推bot",
+                    title: "对家的心动瞬间",
+                    content: "明明是对家，为什么看到前辈的画会心跳加速？为什么会在意前辈的每一个动态？那天看到前辈发了一条动态：『今天也想吃饼干。』我立刻跑去买了各种饼干，却不敢送给前辈。这份感情，就像偷偷藏在心底的糖果，既甜蜜又苦涩。但我知道，我已经陷进去了，无法自拔。",
+                    likes: 367,
+                    comments: 77,
+                    date: "2025-12-10",
+                    score: 88
+                },
+                {
+                    rank: 4,
+                    author: "瓜条记录员",
+                    title: "关于暗恋的100件小事",
+                    content: "1.偷偷收藏前辈所有的画。2.每天翻看前辈的动态至少10次。3.假装不经意地出现在前辈的直播间。4.记住前辈喜欢的每一种饼干。5.学前辈的画风，只为了更靠近一点。6.写瓜条时偷偷夹带私货。7.看到前辈点赞会开心一整天...原来暗恋一个人，会让自己变得如此卑微又如此勇敢。",
+                    likes: 314,
+                    comments: 66,
+                    date: "2025-12-08",
+                    score: 85
+                },
+                {
+                    rank: 5,
+                    author: "香影洁癖患者",
+                    title: "前辈的温柔陷阱",
+                    content: "前辈总是那么温柔，对每个人都很好。可我只想要前辈的专属温柔。那天前辈对我说：『你是不一样的。』我愣了好久，眼泪不争气地掉下来。这份贪心，让我在深夜辗转反侧，在瓜条里写下不敢说出口的话。但前辈的温柔就像陷阱，我明知道危险，还是义无反顾地跳了进去。",
+                    likes: 289,
+                    comments: 58,
+                    date: "2025-12-06",
+                    score: 82
+                },
+                {
+                    rank: 6,
+                    author: "军pa私设爱好者",
+                    title: "平行世界的我们",
+                    content: "在我的私设里，前辈是温柔的军官，我是倔强的新兵。在训练场上被你训斥，在战场上被你保护。现实中的我不敢靠近，只能在设定里与你并肩。那天我把设定发给前辈看，前辈回复：『很棒的设定，我们可以一起完善它吗？』我激动得哭了，原来平行世界的我们，也能在现实中有交集。",
+                    likes: 256,
+                    comments: 52,
+                    date: "2025-12-04",
+                    score: 79
+                },
+                {
+                    rank: 7,
+                    author: "深夜猹猹",
+                    title: "那些没说出口的话",
+                    content: "『我喜欢你』四个字，在对话框里打了又删。最后只发出去一句『晚安』。前辈回我『晚安，明天见』，我就开心得睡不着。第二天前辈说：『昨晚想说什么？』我鼓起勇气：『想说...前辈的画画得真好。』前辈笑了：『只有这个？』我知道前辈在等什么，但我还是不敢说出口。",
+                    likes: 233,
+                    comments: 47,
+                    date: "2025-12-02",
+                    score: 76
+                },
+                {
+                    rank: 8,
+                    author: "饼干王国居民",
+                    title: "前辈的梗图会发光",
+                    content: "前辈做的梗图，我每一张都保存了。朋友们问我为什么收藏那么多梗图，我说因为好笑。其实是因为，那是前辈用心做的。那天前辈说：『你喜欢的话，我可以专门为你做一张。』我愣住了，然后疯狂点头。当看到专属梗图时，我哭了。原来前辈的温柔，比阳光还要温暖。",
+                    likes: 210,
+                    comments: 42,
+                    date: "2025-11-30",
+                    score: 73
+                },
+                {
+                    rank: 9,
+                    author: "奶香味饼干",
+                    title: "心跳的证明",
+                    content: "医疗报告显示我的心跳异常，医生说：『你最近有没有特别在意的人？』我想起了前辈，脸瞬间红了。医生笑了：『这就是原因。』原来喜欢一个人，连心跳都会出卖自己。我把报告发给前辈：『你看，这是我喜欢你的证明。』前辈回复：『那我的医疗报告应该也是这样。』",
+                    likes: 198,
+                    comments: 39,
+                    date: "2025-11-28",
+                    score: 70
+                },
+                {
+                    rank: 10,
+                    author: "草莓夹心派",
+                    title: "前辈的味道",
+                    content: "前辈身上有淡淡的饼干香味，每次靠近都会让我心跳加速。我开始寻找同款香味的饼干，但怎么也找不到。直到那天前辈递给我一块饼干：『尝尝看，我自己做的。』我咬了一口，就是这个味道！原来前辈的味道，是独一无二的，就像前辈在我心里的位置一样。",
+                    likes: 187,
+                    comments: 36,
+                    date: "2025-11-26",
+                    score: 68
+                }
+            ];
+
+            const submissionsList = document.getElementById('submissions-list');
+            const noSubmissionsMsg = document.getElementById('no-submissions-msg');
+
+            if (submissionsData.length === 0) {
+                noSubmissionsMsg.innerHTML = '<i class="fas fa-book-open"></i> 还没有投稿作品，快来投稿吧！';
+                return;
+            }
+
+            // 清空加载提示
+            noSubmissionsMsg.style.display = 'none';
+
+            // 渲染投稿列表
+            submissionsData.forEach(submission => {
+                const submissionItem = document.createElement('div');
+                submissionItem.className = `submission-item rank-${submission.rank}`;
+                
+                // 生成饼干装饰
+                let cookieDecor = "";
+                if (submission.rank <= 3) {
+                    const cookieTypes = ["🍪", "🥠", "🍘", "🥮", "🥐"];
+                    cookieDecor = `<div class="cookie-decoration" style="position:absolute; top:10px; left:10px; font-size:1.2rem; opacity:0.7;">${cookieTypes[submission.rank-1]}</div>`;
+                }
+                
+                submissionItem.innerHTML = `
+                    ${cookieDecor}
+                    <div class="submission-author">
+                        <i class="fas fa-user-pen"></i> ${submission.author}
+                        <span style="font-size:0.9rem; color:#888; margin-left:10px;">
+                            <i class="fas fa-star" style="color:#FFD700;"></i> 综合评分: ${submission.score}
+                        </span>
+                    </div>
+                    <div class="submission-title">
+                        <i class="fas fa-book"></i> ${submission.title}
+                        <span style="font-size:0.8rem; color:#e86a92; margin-left:10px; background:#ffe4ec; padding:2px 8px; border-radius:10px;">
+                            第${submission.rank}名
+                        </span>
+                    </div>
+                    <div class="submission-content">
+                        ${submission.content}
+                    </div>
+                    <div class="submission-stats">
+                        <span><i class="fas fa-heart" style="color:#e86a92;"></i> ${submission.likes} 点赞</span>
+                        <span><i class="fas fa-comment" style="color:#2ecc71;"></i> ${submission.comments} 评论</span>
+                        <span><i class="fas fa-calendar" style="color:#3498db;"></i> ${submission.date}</span>
+                        <span><i class="fas fa-cookie-bite" style="color:#8B4513;"></i> 饼干值: ${Math.floor(submission.score * 1.5)}</span>
+                    </div>
+                `;
+                
+                submissionsList.appendChild(submissionItem);
+            });
+        }
+        
+        // ========== 改进版跑酷游戏：收集饼干、无限跳跃、无限场景、音效、对话框聊天 ==========
+        function initParkourGame() {
+            console.log("初始化跑酷游戏");
+            const canvas = document.getElementById('game-canvas');
+            const ctx = canvas.getContext('2d');
+            const startBtn = document.getElementById('start-game-btn');
+            const pauseBtn = document.getElementById('pause-game-btn');
+            const restartBtn = document.getElementById('restart-game-btn');
+            const scoreEl = document.getElementById('game-score');
+            const highscoreEl = document.getElementById('game-highscore');
+            const cookiesEl = document.getElementById('game-cookies');
+            const statusEl = document.getElementById('game-status');
+            
+            // 游戏状态
+            let gameRunning = false;
+            let gamePaused = false;
+            let score = 0;
+            let highscore = parseInt(localStorage.getItem('parkourHighscore')) || 0;
+            let cookiesCollected = 0;
+            let gameLoop;
+            let gameTime = 0;
+            let cameraX = 0;
+            let dialogTimer = 0;
+            let dialogIndex = 0;
+            
+            // 初始化高分显示
+            highscoreEl.textContent = highscore;
+            
+            // ========== 生成520条游戏对话 ==========
+            function generateGameDialogs() {
+                const dialogTemplates = [
+                    // 埋的对话模板
+                    {speaker: "埋", type: "mai", templates: [
+                        "伊...你为什么总是追着我跑？",
+                        "别这样看着我...我会害羞的...",
+                        "你的瓜条我都看到了...写得那么明显...",
+                        "其实...我也一直在注意你...",
+                        "我们这样...真的可以吗？",
+                        "你是对家...我是对家...但我们...",
+                        "我的心跳得好快...都是因为你...",
+                        "不要再说那种话了...我更害羞了...",
+                        "你的画...真的很美...",
+                        "我想...我可能是喜欢上你了...",
+                        "这份感情...让我不知所措...",
+                        "如果能一直这样...该多好...",
+                        "你是我最特别的后辈...",
+                        "我的心里...早就有你的位置了...",
+                        "这份暗恋...终于可以说出口了...",
+                        "谢谢你...一直喜欢着我...",
+                        "我也...一直喜欢着你...",
+                        "从今以后...不要再偷偷看我了...",
+                        "我要你光明正大地...站在我身边...",
+                        "伊...和我在一起吧...",
+                        "这份感情...我不再隐藏了...",
+                        "我喜欢你...比喜欢任何饼干都多...",
+                        "你是我最珍贵的后辈...",
+                        "我想和你...一起走下去...",
+                        "这份爱意...再也藏不住了...",
+                        "让我们...堂堂正正地相爱吧...",
+                        "伊...你愿意吗？",
+                        "从今以后...我只想看着你...",
+                        "这份心意...请你收下...",
+                        "我爱你...比想象中还要深...",
+                    ]},
+                    
+                    // 伊的对话模板
+                    {speaker: "伊", type: "yi", templates: [
+                        "前辈...等等我...",
+                        "我控制不住自己...就是想追着你...",
+                        "前辈...我喜欢你...",
+                        "这份感情...已经无法隐藏了...",
+                        "从看到前辈的第一眼...我就喜欢上了...",
+                        "前辈的每一幅画...我都收藏着...",
+                        "前辈的每一个动态...我都关注着...",
+                        "我知道这样不对...但我就是喜欢你...",
+                        "前辈...你能感受到我的心意吗？",
+                        "我写了那么多瓜条...都是给前辈看的...",
+                        "前辈...不要躲着我...",
+                        "让我靠近你一点...就一点点...",
+                        "前辈的笑容...是我最大的动力...",
+                        "我想和前辈...一直在一起...",
+                        "这份暗恋...终于可以说出口了...",
+                        "前辈...请接受我的心意...",
+                        "我会一直...一直喜欢前辈...",
+                        "前辈是我最重要的人...",
+                        "这份感情...永远不会改变...",
+                        "前辈...我爱你...",
+                        "让我留在前辈身边...",
+                        "我想成为前辈最特别的人...",
+                        "前辈的一切...我都喜欢...",
+                        "这份爱意...已经满溢出来了...",
+                        "前辈...请看着我...",
+                        "我的眼里...只有前辈...",
+                        "前辈是我活下去的意义...",
+                        "没有前辈...我会活不下去的...",
+                        "前辈...请和我在一起...",
+                        "这份心意...请你收下...",
+                    ]}
+                ];
+                
+                // 情感词库
+                const emotions = ["喜欢", "爱", "暗恋", "思念", "倾慕", "爱慕", "钟情", "迷恋", "痴恋", "深爱"];
+                const objects = ["你", "前辈", "后辈", "埋", "伊", "心", "感情", "心意", "爱意", "情意"];
+                const actions = ["藏不住", "忍不住", "控制不住", "无法隐藏", "无法抑制", "难以控制", "情不自禁", "不由自主"];
+                const places = ["心里", "心底", "内心深处", "灵魂深处", "心田", "心海", "心扉"];
+                const times = ["一直", "永远", "始终", "永远永远", "生生世世", "从今往后", "此时此刻"];
+                
+                // 生成520条对话
+                const dialogs = [];
+                const dialogCount = 520;
+                
+                // 先添加预设的模板对话
+                dialogTemplates.forEach(template => {
+                    template.templates.forEach(text => {
+                        dialogs.push({
+                            speaker: template.speaker,
+                            text: text,
+                            type: template.type
+                        });
+                    });
+                });
+                
+                // 生成更多对话直到达到520条
+                while(dialogs.length < dialogCount) {
+                    const speaker = Math.random() > 0.5 ? "埋" : "伊";
+                    const type = speaker === "埋" ? "mai" : "yi";
+                    
+                    // 随机生成对话内容
+                    let text = "";
+                    
+                    if (speaker === "埋") {
+                        const templates = [
+                            `伊...我${randomChoice(emotions)}${randomChoice(objects)}...`,
+                            `这份${randomChoice(emotions)}...${randomChoice(actions)}了...`,
+                            `在我的${randomChoice(places)}...${randomChoice(times)}有你的位置...`,
+                            `你知道吗...我${randomChoice(times)}${randomChoice(emotions)}着你...`,
+                            `${randomChoice(times)}...我只想看着你...`,
+                            `这份${randomChoice(emotions)}...请你收下...`,
+                            `我${randomChoice(emotions)}你...比想象中还要深...`,
+                            `让我们${randomChoice(times)}在一起...好吗？`,
+                            `你的${randomChoice(objects)}...让我${randomChoice(actions)}...`,
+                            `这份${randomChoice(emotions)}...终于可以说出口了...`
+                        ];
+                        text = randomChoice(templates);
+                    } else {
+                        const templates = [
+                            `前辈...我${randomChoice(emotions)}${randomChoice(objects)}...`,
+                            `这份${randomChoice(emotions)}...${randomChoice(actions)}了...`,
+                            `在我的${randomChoice(places)}...${randomChoice(times)}有前辈...`,
+                            `前辈...我${randomChoice(times)}${randomChoice(emotions)}着你...`,
+                            `${randomChoice(times)}...我只想看着前辈...`,
+                            `这份${randomChoice(emotions)}...请前辈收下...`,
+                            `我${randomChoice(emotions)}前辈...比想象中还要深...`,
+                            `让我们${randomChoice(times)}在一起...好吗？`,
+                            `前辈的${randomChoice(objects)}...让我${randomChoice(actions)}...`,
+                            `这份${randomChoice(emotions)}...终于可以说出口了...`
+                        ];
+                        text = randomChoice(templates);
+                    }
+                    
+                    // 确保对话不重复
+                    const existing = dialogs.find(d => d.text === text && d.speaker === speaker);
+                    if (!existing) {
+                        dialogs.push({
+                            speaker: speaker,
+                            text: text,
+                            type: type
+                        });
+                    }
+                }
+                
+                return dialogs.slice(0, dialogCount);
+            }
+            
+            // 随机选择函数
+            function randomChoice(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+            
+            // 在游戏初始化中使用
+            const dialogs = generateGameDialogs();
+            
+            // 显示对话框 - 根据文本长度决定显示时间（最少3秒）
+            function showDialog(dialog) {
+                const dialogElement = document.getElementById('game-dialog');
+                const speakerElement = document.getElementById('dialog-speaker');
+                const textElement = document.getElementById('dialog-text');
+                
+                speakerElement.textContent = dialog.speaker + "：";
+                speakerElement.className = "dialog-speaker " + dialog.type + "-speaker";
+                textElement.textContent = dialog.text;
+                
+                dialogElement.className = "game-dialog " + dialog.type + "-dialog";
+                dialogElement.style.display = 'block';
+                
+                // 根据文本长度计算显示时间（最少3秒，每10个字符增加1秒，最多10秒）
+                const textLength = dialog.text.length;
+                const displayTime = Math.max(3000, Math.min(10000, 3000 + textLength * 100));
+                
+                // 显示时间后自动隐藏对话框
+                setTimeout(() => {
+                    dialogElement.style.display = 'none';
+                }, displayTime);
+            }
+            
+            // 随机显示对话框
+            function showRandomDialog() {
+                if (!gameRunning || gamePaused) return;
+                
+                // 每5-10秒显示一次对话
+                dialogTimer++;
+                if (dialogTimer > 300 + Math.random() * 300) { // 5-10秒
+                    const dialog = dialogs[dialogIndex % dialogs.length];
+                    showDialog(dialog);
+                    dialogIndex++;
+                    dialogTimer = 0;
+                }
+            }
+            
+            // ========== 游戏世界参数 ==========
+            const gravity = 0.5;
+            const groundHeight = 50;
+            
+            // ========== 玩家（埋）- 恢复原来的大小 ==========
+            const player = {
+                x: 100,
+                y: 300,
+                width: 50,     // 恢复原来的大小
+                height: 80,    // 恢复原来的大小
+                velocityX: 0,
+                velocityY: 0,
+                speed: 5,
+                jumpPower: -12,
+                isOnGround: false,
+                facingRight: true,
+                lives: 3,
+                invincible: false,
+                invincibleTime: 0,
+                
+                // 动画系统
+                animationState: 'idle',
+                animationFrame: 0
+            };
+            
+            // ========== 敌人（伊）- 恢复原来的大小 ==========
+            const enemy = {
+                x: 500,
+                y: 300,
+                width: 60,     // 恢复原来的大小
+                height: 90,    // 恢复原来的大小
+                velocityX: 0,
+                velocityY: 0,
+                speed: 2.5,
+                attackCooldown: 0,
+                attackInterval: 120,
+                throwPower: 8
+            };
+            
+            // ========== 饼干数组 ==========
+            const cookies = [];
+            const cookieWidth = 25;
+            const cookieHeight = 25;
+            
+            // ========== 瓜条数组 ==========
+            const melons = [];
+            const melonWidth = 30;
+            const melonHeight = 30;
+            
+            // ========== 平台数组（无限生成） ==========
+            const platforms = [];
+            let lastPlatformX = 0;
+            
+            // ========== 音效系统 ==========
+            const soundEffects = {
+                jump: null,
+                collect: null,
+                hit: null
+            };
+            
+            // 初始化音效
+            function initSoundEffects() {
+                // 创建简单的音效（使用Web Audio API生成）
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    
+                    // 跳跃音效（短促的上升音）
+                    soundEffects.jump = function() {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = 523.25; // C5
+                        oscillator.type = 'sine';
+                        
+                        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.3);
+                    };
+                    
+                    // 收集饼干音效（清脆的叮咚声）
+                    soundEffects.collect = function() {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime); // E5
+                        oscillator.frequency.exponentialRampToValueAtTime(523.25, audioContext.currentTime + 0.2); // C5
+                        oscillator.type = 'triangle';
+                        
+                        gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.3);
+                    };
+                    
+                    // 被击中音效（低沉的咚声）
+                    soundEffects.hit = function() {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = 220; // A3
+                        oscillator.type = 'sawtooth';
+                        
+                        gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                    };
+                    
+                    console.log("音效系统初始化成功");
+                } catch (error) {
+                    console.log("音效系统初始化失败，使用静音模式:", error);
+                    // 创建静音函数
+                    soundEffects.jump = function() {};
+                    soundEffects.collect = function() {};
+                    soundEffects.hit = function() {};
+                }
+            }
+            
+            // 初始化平台（无限生成）
+            function initPlatforms() {
+                platforms.length = 0;
+                lastPlatformX = 0;
+                
+                // 初始地面平台
+                platforms.push({
+                    x: 0,
+                    y: canvas.height - groundHeight,
+                    width: 1000,
+                    height: groundHeight,
+                    type: 'ground'
+                });
+                
+                // 生成初始平台
+                for (let i = 0; i < 20; i++) {
+                    generatePlatform();
+                }
+            }
+            
+            // 生成新平台
+            function generatePlatform() {
+                const platformTypes = ['normal', 'small', 'moving'];
+                const type = platformTypes[Math.floor(Math.random() * platformTypes.length)];
+                
+                let width, height;
+                switch(type) {
+                    case 'small':
+                        width = 60 + Math.random() * 40;
+                        height = 15;
+                        break;
+                    case 'moving':
+                        width = 80 + Math.random() * 40;
+                        height = 20;
+                        break;
+                    default:
+                        width = 80 + Math.random() * 60;
+                        height = 20;
+                }
+                
+                const x = lastPlatformX + 150 + Math.random() * 200;
+                const y = canvas.height - groundHeight - 50 - Math.random() * 150;
+                
+                const platform = {
+                    x: x,
+                    y: y,
+                    width: width,
+                    height: height,
+                    type: type,
+                    color: type === 'small' ? '#e74c3c' : 
+                           type === 'moving' ? '#3498db' : '#95a5a6'
+                };
+                
+                if (type === 'moving') {
+                    platform.moveRange = 80;
+                    platform.moveSpeed = 1 + Math.random();
+                    platform.moveDirection = 1;
+                    platform.originalX = x;
+                }
+                
+                platforms.push(platform);
+                lastPlatformX = x;
+                
+                // 在平台上生成饼干
+                generateCookieOnPlatform(platform);
+                
+                return platform;
+            }
+            
+            // 在平台上生成饼干
+            function generateCookieOnPlatform(platform) {
+                // 70%的几率在平台上生成饼干
+                if (Math.random() > 0.3) {
+                    const cookieX = platform.x + platform.width/2 - cookieWidth/2;
+                    const cookieY = platform.y - cookieHeight - 5;
+                    
+                    cookies.push({
+                        x: cookieX,
+                        y: cookieY,
+                        width: cookieWidth,
+                        height: cookieHeight,
+                        collected: false,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: 0.05
+                    });
+                }
+            }
+            
+            // 生成随机饼干（空中）
+            function generateRandomCookie() {
+                // 20%的几率生成空中饼干
+                if (Math.random() > 0.8 && cookies.length < 15) {
+                    const x = cameraX + canvas.width + 100 + Math.random() * 200;
+                    const y = canvas.height - groundHeight - 100 - Math.random() * 200;
+                    
+                    cookies.push({
+                        x: x,
+                        y: y,
+                        width: cookieWidth,
+                        height: cookieHeight,
+                        collected: false,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: 0.05
+                    });
+                }
+            }
+            
+            // 移除超出屏幕的对象
+            function cleanupOffscreenObjects() {
+                // 移除超出屏幕的饼干
+                for (let i = cookies.length - 1; i >= 0; i--) {
+                    if (cookies[i].x < cameraX - 100) {
+                        cookies.splice(i, 1);
+                    }
+                }
+                
+                // 移除超出屏幕的瓜条
+                for (let i = melons.length - 1; i >= 0; i--) {
+                    if (melons[i].x < cameraX - 100 || melons[i].x > cameraX + canvas.width + 100) {
+                        melons.splice(i, 1);
+                    }
+                }
+                
+                // 移除超出屏幕的平台并生成新平台
+                for (let i = platforms.length - 1; i >= 0; i--) {
+                    if (platforms[i].x + platforms[i].width < cameraX - 100) {
+                        platforms.splice(i, 1);
+                        generatePlatform(); // 生成新平台
+                    }
+                }
+            }
+            
+            // ========== 美观的角色绘制系统 ==========
+            
+            // 绘制圆角矩形的辅助函数
+            function roundRect(ctx, x, y, width, height, radius) {
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.lineTo(x + width - radius, y);
+                ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+                ctx.lineTo(x + width, y + height - radius);
+                ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                ctx.lineTo(x + radius, y + height);
+                ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+                ctx.lineTo(x, y + radius);
+                ctx.quadraticCurveTo(x, y, x + radius, y);
+                ctx.closePath();
+            }
+            
+            // 绘制美观的埋角色
+            function drawBeautifulPlayer(x, y, width, height, facingRight, animationState) {
+                ctx.save();
+                ctx.translate(x + width/2, y + height/2);
+                
+                if (!facingRight) {
+                    ctx.scale(-1, 1);
+                }
+                
+                // 根据状态调整动画帧
+                const animFrame = Math.floor(player.animationFrame / 10) % 4;
+                
+                // 身体（粉色的饼干形状）
+                ctx.fillStyle = player.invincible && Math.floor(gameTime / 5) % 2 === 0 ? 
+                    'rgba(232, 106, 146, 0.5)' : '#e86a92';
+                
+                // 饼干形状的身体（圆角矩形）
+                roundRect(ctx, -width/2, -height/2, width, height, 20);
+                ctx.fill();
+                
+                // 饼干边缘装饰
+                ctx.strokeStyle = '#ffb5cc';
+                ctx.lineWidth = 3;
+                roundRect(ctx, -width/2, -height/2, width, height, 20);
+                ctx.stroke();
+                
+                // 巧克力碎片（装饰点）
+                ctx.fillStyle = '#8B4513';
+                const dots = [
+                    {x: -15, y: -20},
+                    {x: 10, y: -25},
+                    {x: -5, y: -5},
+                    {x: 15, y: 0},
+                    {x: -20, y: 15},
+                    {x: 5, y: 20}
+                ];
+                
+                dots.forEach(dot => {
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // 面部特征
+                drawPlayerFace(animationState, animFrame);
+                
+                // 头发/刘海（可爱的发型）
+                ctx.fillStyle = '#ff8fab';
+                ctx.beginPath();
+                ctx.moveTo(-25, -40);
+                ctx.quadraticCurveTo(-15, -50, -5, -40);
+                ctx.quadraticCurveTo(5, -50, 15, -40);
+                ctx.quadraticCurveTo(25, -50, 35, -40);
+                ctx.lineTo(25, -35);
+                ctx.lineTo(-25, -35);
+                ctx.closePath();
+                ctx.fill();
+                
+                // 跑步/跳跃动画
+                if (animationState === 'running') {
+                    // 跑步时的腿部动画
+                    const legOffset = Math.sin(gameTime * 0.2) * 10;
+                    drawLeg(-10, 30, legOffset);
+                    drawLeg(10, 30, -legOffset);
+                } else if (animationState === 'jumping') {
+                    // 跳跃姿势
+                    drawJumpingPose();
+                } else {
+                    // 站立姿势
+                    drawLeg(-10, 30, 0);
+                    drawLeg(10, 30, 0);
+                }
+                
+                // 手臂
+                ctx.fillStyle = '#ff8fab';
+                if (animationState === 'running') {
+                    const armOffset = Math.cos(gameTime * 0.2) * 10;
+                    drawArm(-25, 0, armOffset);
+                    drawArm(25, 0, -armOffset);
+                } else {
+                    drawArm(-25, 0, 0);
+                    drawArm(25, 0, 0);
+                }
+                
+                ctx.restore();
+            }
+            
+            // 绘制面部
+            function drawPlayerFace(state, frame) {
+                // 眼睛
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(-15, -10, 8, 0, Math.PI * 2);
+                ctx.arc(15, -10, 8, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 瞳孔（根据状态变化）
+                let pupilSize = 5;
+                let pupilOffsetX = 0;
+                
+                if (state === 'jumping') {
+                    pupilSize = 4;
+                } else if (state === 'running') {
+                    pupilOffsetX = frame % 2 === 0 ? 1 : -1;
+                }
+                
+                ctx.fillStyle = '#e86a92';
+                ctx.beginPath();
+                ctx.arc(-15 + pupilOffsetX, -10, pupilSize, 0, Math.PI * 2);
+                ctx.arc(15 + pupilOffsetX, -10, pupilSize, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 高光
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(-18, -12, 2, 0, Math.PI * 2);
+                ctx.arc(12, -12, 2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 嘴巴（根据状态变化）
+                ctx.strokeStyle = '#e86a92';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                if (state === 'jumping') {
+                    // 开心的大笑
+                    ctx.arc(0, 5, 10, 0.2, Math.PI - 0.2, false);
+                } else if (state === 'running') {
+                    // 微笑
+                    ctx.arc(0, 8, 8, 0.1, Math.PI - 0.1, false);
+                } else {
+                    // 普通的微笑
+                    ctx.arc(0, 5, 6, 0.1, Math.PI - 0.1, false);
+                }
+                ctx.stroke();
+            }
+            
+            // 绘制腿部
+            function drawLeg(x, y, offset) {
+                ctx.fillStyle = '#ff8fab';
+                ctx.fillRect(x - 5 + offset, y, 10, 15);
+                
+                // 鞋子
+                ctx.fillStyle = '#e86a92';
+                ctx.fillRect(x - 7 + offset, y + 12, 14, 8);
+            }
+            
+            // 绘制手臂
+            function drawArm(x, y, offset) {
+                ctx.fillStyle = '#ff8fab';
+                ctx.fillRect(x + offset, y, 8, 20);
+                
+                // 手
+                ctx.fillStyle = '#ffb5cc';
+                ctx.beginPath();
+                ctx.arc(x + offset, y + 25, 6, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // 绘制跳跃姿势
+            function drawJumpingPose() {
+                // 跳跃时腿部弯曲
+                const legAngle = 0.3;
+                
+                // 左腿
+                ctx.save();
+                ctx.translate(-10, 30);
+                ctx.rotate(legAngle);
+                ctx.fillStyle = '#ff8fab';
+                ctx.fillRect(-5, 0, 10, 15);
+                ctx.fillStyle = '#e86a92';
+                ctx.fillRect(-7, 12, 14, 8);
+                ctx.restore();
+                
+                // 右腿
+                ctx.save();
+                ctx.translate(10, 30);
+                ctx.rotate(-legAngle);
+                ctx.fillStyle = '#ff8fab';
+                ctx.fillRect(-5, 0, 10, 15);
+                ctx.fillStyle = '#e86a92';
+                ctx.fillRect(-7, 12, 14, 8);
+                ctx.restore();
+            }
+            
+            // 绘制饼干
+            function drawCookie(x, y, width, height, rotation, collected) {
+                ctx.save();
+                ctx.translate(x + width/2, y + height/2);
+                ctx.rotate(rotation);
+                
+                if (collected) {
+                    ctx.globalAlpha = 0.5;
+                }
+                
+                // 饼干主体（金色）
+                ctx.fillStyle = collected ? '#cccccc' : '#FFD700';
+                ctx.beginPath();
+                ctx.arc(0, 0, width/2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 饼干边缘
+                ctx.strokeStyle = collected ? '#999999' : '#FFA500';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(0, 0, width/2, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // 巧克力碎片
+                ctx.fillStyle = '#8B4513';
+                const chipCount = 5;
+                for (let i = 0; i < chipCount; i++) {
+                    const angle = (i / chipCount) * Math.PI * 2;
+                    const radius = width/3;
+                    const chipX = Math.cos(angle) * radius;
+                    const chipY = Math.sin(angle) * radius;
+                    
+                    ctx.beginPath();
+                    ctx.arc(chipX, chipY, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // 中心孔
+                ctx.fillStyle = '#FFF8DC';
+                ctx.beginPath();
+                ctx.arc(0, 0, width/6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 收集特效
+                if (collected) {
+                    ctx.strokeStyle = '#FFD700';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, width/2 + 5, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                
+                ctx.restore();
+            }
+            
+            // 绘制美观的伊角色
+            function drawBeautifulEnemy(x, y, width, height) {
+                ctx.save();
+                ctx.translate(x + width/2, y + height/2);
+                
+                // 身体（绿色饼干形状）
+                ctx.fillStyle = '#2ed573';
+                roundRect(ctx, -width/2, -height/2, width, height, 20);
+                ctx.fill();
+                
+                // 饼干边缘装饰
+                ctx.strokeStyle = '#27ae60';
+                ctx.lineWidth = 3;
+                roundRect(ctx, -width/2, -height/2, width, height, 20);
+                ctx.stroke();
+                
+                // 巧克力碎片
+                ctx.fillStyle = '#8B4513';
+                const dots = [
+                    {x: -20, y: -25},
+                    {x: 5, y: -30},
+                    {x: -10, y: -10},
+                    {x: 15, y: -5},
+                    {x: -25, y: 10},
+                    {x: 0, y: 15},
+                    {x: 25, y: 20}
+                ];
+                
+                dots.forEach(dot => {
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // 面部
+                drawEnemyFace();
+                
+                // 头发/帽子
+                ctx.fillStyle = '#27ae60';
+                ctx.beginPath();
+                ctx.moveTo(-35, -45);
+                ctx.quadraticCurveTo(-20, -60, -5, -45);
+                ctx.quadraticCurveTo(10, -60, 25, -45);
+                ctx.quadraticCurveTo(40, -60, 55, -45);
+                ctx.lineTo(45, -40);
+                ctx.lineTo(-25, -40);
+                ctx.closePath();
+                ctx.fill();
+                
+                ctx.restore();
+            }
+            
+            // 绘制伊的面部
+            function drawEnemyFace() {
+                // 眼睛
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(-20, -15, 10, 0, Math.PI * 2);
+                ctx.arc(20, -15, 10, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 瞳孔
+                ctx.fillStyle = '#2c3e50';
+                ctx.beginPath();
+                ctx.arc(-20, -15, 6, 0, Math.PI * 2);
+                ctx.arc(20, -15, 6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 嘴巴（生气的嘴）
+                ctx.strokeStyle = '#2c3e50';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(0, 10, 8, 0.3, Math.PI - 0.3, true);
+                ctx.stroke();
+            }
+            
+            // ========== 玩家跳跃系统（无限跳跃） ==========
+            
+            // 处理玩家跳跃
+            function handlePlayerJump() {
+                // 无限跳跃：任何时候按空格都可以跳跃
+
+                player.velocityY = player.jumpPower;
+                player.isOnGround = false;
+                player.animationState = 'jumping';
+                
+                // 播放跳跃音效
+                soundEffects.jump();
+            }
+            
+            // 更新玩家动画状态
+            function updatePlayerAnimation() {
+                player.animationFrame++;
+                
+                // 根据物理状态更新动画状态
+                if (player.isOnGround) {
+                    if (Math.abs(player.velocityX) > 0.1) {
+                        player.animationState = 'running';
+                    } else {
+                        player.animationState = 'idle';
+                    }
+                } else {
+                    if (player.velocityY < 0) {
+                        player.animationState = 'jumping';
+                    } else {
+                        player.animationState = 'falling';
+                    }
+                }
+            }
+            
+            // ========== 游戏主循环 ==========
+            
+            // 键盘控制
+            const keys = {};
+            
+            function handleKeyDown(e) {
+                keys[e.code] = true;
+                
+                if (e.code === 'Space' && gameRunning && !gamePaused) {
+                    handlePlayerJump();
+                }
+                
+                if (e.code === 'KeyP') {
+                    pauseGame();
+                }
+            }
+            
+            function handleKeyUp(e) {
+                keys[e.code] = false;
+            }
+            
+            // 更新伊的AI
+            function updateEnemyAI() {
+                // 伊会跟随玩家
+                const distance = Math.abs(player.x - enemy.x);
+                
+                if (distance > 400) {
+                    enemy.velocityX = player.x > enemy.x ? enemy.speed * 1.5 : -enemy.speed * 1.5;
+                } else if (distance < 150) {
+                    enemy.velocityX = player.x > enemy.x ? -enemy.speed * 0.7 : enemy.speed * 0.7;
+                } else {
+                    enemy.velocityX = player.x > enemy.x ? enemy.speed : -enemy.speed;
+                }
+                
+                // 伊攻击
+                enemy.attackCooldown--;
+                if (enemy.attackCooldown <= 0 && Math.abs(player.x - enemy.x) < 500) {
+                    const angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
+                    const power = enemy.throwPower * (0.9 + Math.random() * 0.2);
+                    
+                    melons.push({
+                        x: enemy.x,
+						 y: enemy.y + enemy.height/2,
+                        width: melonWidth,
+                        height: melonHeight,
+                        velocityX: Math.cos(angle) * power,
+                        velocityY: Math.sin(angle) * power,
+                        rotation: 0,
+                        rotationSpeed: 0.1
+                    });
+                    
+                    enemy.attackCooldown = enemy.attackInterval;
+                }
+            }
+            
+            function update() {
+                if (gamePaused || !gameRunning) return;
+                
+                gameTime++;
+                
+                // 更新玩家动画
+                updatePlayerAnimation();
+                
+                // 更新玩家无敌时间
+                if (player.invincible) {
+                    player.invincibleTime--;
+                    if (player.invincibleTime <= 0) {
+                        player.invincible = false;
+                    }
+                }
+                
+                // 更新摄像机位置（跟随玩家）
+                cameraX = player.x - canvas.width * 0.3;
+                cameraX = Math.max(0, cameraX);
+                
+                // 更新玩家物理
+                player.velocityY += gravity;
+                player.y += player.velocityY;
+                
+                // 玩家输入
+                if (keys['ArrowLeft'] || keys['KeyA']) {
+                    player.velocityX = -player.speed;
+                    player.facingRight = false;
+                } else if (keys['ArrowRight'] || keys['KeyD']) {
+                    player.velocityX = player.speed;
+                    player.facingRight = true;
+                } else {
+                    player.velocityX *= 0.8; // 摩擦力
+                }
+                
+                player.x += player.velocityX;
+                
+                // 平台碰撞检测
+                player.isOnGround = false;
+                for (const platform of platforms) {
+                    if (player.x < platform.x + platform.width &&
+                        player.x + player.width > platform.x &&
+                        player.y + player.height > platform.y &&
+                        player.y + player.height < platform.y + 20 &&
+                        player.velocityY > 0) {
+                        
+                        player.y = platform.y - player.height;
+                        player.velocityY = 0;
+                        player.isOnGround = true;
+                        break;
+                    }
+                }
+                
+                // 地面碰撞
+                if (player.y >= canvas.height - groundHeight - player.height) {
+                    player.y = canvas.height - groundHeight - player.height;
+                    player.velocityY = 0;
+                    player.isOnGround = true;
+                }
+                
+                // 掉落检测
+                if (player.y > canvas.height) {
+                    player.lives--;
+                    if (player.lives <= 0) {
+                        gameOver();
+                        return;
+                    } else {
+                        player.x = Math.max(100, player.x - 300);
+                        player.y = 300;
+                        player.velocityY = 0;
+                        player.invincible = true;
+                        player.invincibleTime = 60;
+                        soundEffects.hit();
+                    }
+                }
+                
+                // 更新移动平台
+                platforms.forEach(p => {
+                    if (p.type === 'moving') {
+                        p.x += p.moveSpeed * p.moveDirection;
+                        if (p.x > p.originalX + p.moveRange || p.x < p.originalX - p.moveRange) {
+                            p.moveDirection *= -1;
+                        }
+                    }
+                });
+                
+                // 更新伊的AI
+                updateEnemyAI();
+                
+                // 更新伊的物理
+                enemy.velocityY += gravity;
+                enemy.x += enemy.velocityX;
+                enemy.y += enemy.velocityY;
+                
+                // 伊的边界检查
+                if (enemy.y >= canvas.height - groundHeight - enemy.height) {
+                    enemy.y = canvas.height - groundHeight - enemy.height;
+                    enemy.velocityY = 0;
+                }
+                
+                // 确保伊在屏幕范围内
+                if (enemy.x < cameraX) {
+                    enemy.x = cameraX + 50;
+                }
+                if (enemy.x > cameraX + canvas.width - enemy.width) {
+                    enemy.x = cameraX + canvas.width - enemy.width - 50;
+                }
+                
+                // 更新饼干
+                for (let i = cookies.length - 1; i >= 0; i--) {
+                    const cookie = cookies[i];
+                    
+                    // 更新饼干旋转
+                    cookie.rotation += cookie.rotationSpeed;
+                    
+                    // 检测饼干收集
+                    if (!cookie.collected &&
+                        cookie.x < player.x + player.width &&
+                        cookie.x + cookie.width > player.x &&
+                        cookie.y < player.y + player.height &&
+                        cookie.y + cookie.height > player.y) {
+                        
+                        cookie.collected = true;
+                        score += 50;
+                        cookiesCollected++;
+                        
+                        // 播放收集音效
+                        soundEffects.collect();
+                        
+                        // 0.5秒后移除已收集的饼干
+                        setTimeout(() => {
+                            const index = cookies.indexOf(cookie);
+                            if (index !== -1) {
+                                cookies.splice(index, 1);
+                            }
+                        }, 500);
+                    }
+                }
+                
+                // 更新瓜条
+                for (let i = melons.length - 1; i >= 0; i--) {
+                    const melon = melons[i];
+                    
+                    melon.velocityY += gravity * 0.3;
+                    melon.x += melon.velocityX;
+                    melon.y += melon.velocityY;
+                    melon.rotation += melon.rotationSpeed;
+                    
+                    // 碰撞检测
+                    if (!player.invincible &&
+                        melon.x < player.x + player.width &&
+                        melon.x + melon.width > player.x &&
+                        melon.y < player.y + player.height &&
+                        melon.y + melon.height > player.y) {
+                        
+                        player.lives--;
+                        player.invincible = true;
+                        player.invincibleTime = 120;
+                        player.velocityX = (player.x < melon.x ? -8 : 8);
+                        player.velocityY = -6;
+                        melons.splice(i, 1);
+                        
+                        // 播放被击中音效
+                        soundEffects.hit();
+                        
+                        if (player.lives <= 0) {
+                            gameOver();
+                            return;
+                        }
+                    }
+                }
+                
+                // 生成随机饼干
+                generateRandomCookie();
+                
+                // 清理超出屏幕的对象并生成新内容
+                cleanupOffscreenObjects();
+                
+                // 更新分数（根据移动距离）
+                if (player.velocityX > 0) {
+                    score += Math.floor(player.velocityX * 0.1);
+                }
+                
+                // 显示随机对话框
+                showRandomDialog();
+                
+                updateGameStats();
+            }
+            
+            function draw() {
+                // 清除画布
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 绘制背景
+                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                gradient.addColorStop(0, '#87CEEB');
+                gradient.addColorStop(1, '#98FB98');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // 绘制远处的云
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                for (let i = 0; i < 3; i++) {
+                    const cloudX = (cameraX * 0.3 + i * 300) % 900 - 100;
+                    const cloudY = 50 + i * 40;
+                    
+                    ctx.beginPath();
+                    ctx.arc(cloudX, cloudY, 30, 0, Math.PI * 2);
+                    ctx.arc(cloudX + 40, cloudY - 20, 40, 0, Math.PI * 2);
+                    ctx.arc(cloudX + 80, cloudY, 30, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // 绘制平台
+                platforms.forEach(platform => {
+                    const drawX = platform.x - cameraX;
+                    if (drawX > -100 && drawX < canvas.width + 100) {
+                        ctx.fillStyle = platform.color;
+                        ctx.fillRect(drawX, platform.y, platform.width, platform.height);
+                        
+                        // 平台边框
+                        ctx.strokeStyle = '#34495e';
+                        ctx.lineWidth = 2;
+                        ctx.strokeRect(drawX, platform.y, platform.width, platform.height);
+                        
+                        // 移动平台标记
+                        if (platform.type === 'moving') {
+                            ctx.fillStyle = 'white';
+                            ctx.font = '12px Arial';
+                            ctx.fillText('↔', drawX + platform.width/2 - 6, platform.y + 15);
+                        }
+                    }
+                });
+                
+                // 绘制地面
+                ctx.fillStyle = '#27ae60';
+                ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+                
+                // 绘制饼干
+                cookies.forEach(cookie => {
+                    const cookieDrawX = cookie.x - cameraX;
+                    if (cookieDrawX > -50 && cookieDrawX < canvas.width + 50) {
+                        drawCookie(cookieDrawX, cookie.y, cookie.width, cookie.height, cookie.rotation, cookie.collected);
+                    }
+                });
+                
+               // 绘制美观的玩家角色
+                const playerDrawX = player.x - cameraX;
+                if (playerDrawX > -100 && playerDrawX < canvas.width + 100) {
+                    drawBeautifulPlayer(
+                        playerDrawX, 
+                        player.y, 
+                        player.width, 
+                        player.height, 
+                        player.facingRight, 
+                        player.animationState
+                    );
+                }
+                
+                // 绘制美观的伊角色
+                const enemyDrawX = enemy.x - cameraX;
+                if (enemyDrawX > -100 && enemyDrawX < canvas.width + 100) {
+                    drawBeautifulEnemy(
+                        enemyDrawX, 
+                        enemy.y, 
+                        enemy.width, 
+                        enemy.height
+                    );
+                }
+                
+                // 绘制瓜条
+                melons.forEach(melon => {
+                    const melonDrawX = melon.x - cameraX;
+                    if (melonDrawX > -50 && melonDrawX < canvas.width + 50) {
+                        ctx.fillStyle = '#ffa502';
+                        ctx.save();
+                        ctx.translate(melonDrawX + melon.width/2, melon.y + melon.height/2);
+                        ctx.rotate(melon.rotation);
+                        ctx.fillRect(-melon.width/2, -melon.height/2, melon.width, melon.height);
+                        ctx.restore();
+                    }
+                });
+                
+                // 绘制UI
+                // 分数面板
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(10, 10, 220, 120);
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 18px Arial';
+                ctx.fillText(`分数: ${score}`, 20, 35);
+                ctx.fillText(`最高分: ${highscore}`, 20, 60);
+                ctx.fillText(`收集饼干: ${cookiesCollected}`, 20, 85);
+                ctx.fillText(`生命: ${player.lives}`, 20, 110);
+                
+                // 游戏状态
+                if (gamePaused) {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#e86a92';
+                    ctx.font = 'bold 40px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('游戏暂停', canvas.width/2, canvas.height/2 - 20);
+                    ctx.font = '20px Arial';
+                    ctx.fillText('按P键继续', canvas.width/2, canvas.height/2 + 20);
+                    ctx.textAlign = 'left';
+                }
+                
+                if (!gameRunning && score > 0) {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#ff6b81';
+                    ctx.font = 'bold 40px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('游戏结束!', canvas.width/2, canvas.height/2 - 60);
+                    ctx.fillStyle = '#e86a92';
+                    ctx.font = '30px Arial';
+                    ctx.fillText(`最终分数: ${score}`, canvas.width/2, canvas.height/2 - 10);
+                    ctx.fillText(`收集饼干: ${cookiesCollected}`, canvas.width/2, canvas.height/2 + 30);
+                    
+                    if (score > highscore) {
+                        ctx.fillStyle = '#ffa502';
+                        ctx.font = 'bold 25px Arial';
+                        ctx.fillText('🎉 新纪录！', canvas.width/2, canvas.height/2 + 70);
+                    }
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = '20px Arial';
+                    ctx.fillText('点击"重新开始"再玩一次', canvas.width/2, canvas.height/2 + 110);
+                    ctx.textAlign = 'left';
+                }
+            }
+            
+            function gameLoopFunction() {
+                update();
+                draw();
+                if (gameRunning) {
+                    gameLoop = requestAnimationFrame(gameLoopFunction);
+                }
+            }
+            
+            function startGame() {
+                if (gameRunning) return;
+                
+                // 重置游戏状态
+                gameRunning = true;
+                gamePaused = false;
+                gameTime = 0;
+                score = 0;
+                cookiesCollected = 0;
+                cameraX = 0;
+                dialogTimer = 0;
+                dialogIndex = 0;
+                
+                // 重置玩家
+                player.x = 100;
+                player.y = 300;
+                player.velocityX = 0;
+                player.velocityY = 0;
+                player.lives = 3;
+                player.invincible = false;
+                player.invincibleTime = 0;
+                player.animationState = 'idle';
+                player.animationFrame = 0;
+                
+                // 重置伊
+                enemy.x = 500;
+                enemy.y = 300;
+                enemy.velocityX = 0;
+                enemy.velocityY = 0;
+                enemy.attackCooldown = 60;
+                
+                // 清空饼干和瓜条
+                cookies.length = 0;
+                melons.length = 0;
+                
+                // 初始化音效
+                initSoundEffects();
+                
+                // 初始化平台
+                initPlatforms();
+                
+                // 更新UI
+                statusEl.textContent = "游戏中";
+                startBtn.textContent = "重新开始";
+                updateGameStats();
+                
+                // 隐藏对话框
+                document.getElementById('game-dialog').style.display = 'none';
+                
+                // 开始游戏循环
+                gameLoopFunction();
+            }
+            
+            function pauseGame() {
+                if (!gameRunning) return;
+                
+                gamePaused = !gamePaused;
+                pauseBtn.textContent = gamePaused ? "继续游戏" : "暂停游戏";
+                statusEl.textContent = gamePaused ? "已暂停" : "游戏中";
+                
+                if (!gamePaused) {
+                    gameLoopFunction();
+                }
+            }
+            
+            function restartGame() {
+                if (gameLoop) {
+                    cancelAnimationFrame(gameLoop);
+                }
+                startGame();
+            }
+            
+            function gameOver() {
+                gameRunning = false;
+                statusEl.textContent = "游戏结束";
+                
+                if (score > highscore) {
+                    highscore = score;
+                    localStorage.setItem('parkourHighscore', highscore.toString());
+                    highscoreEl.textContent = highscore;
+                }
+                
+                draw();
+            }
+            
+            function updateGameStats() {
+                scoreEl.textContent = score;
+                cookiesEl.textContent = cookiesCollected;
+                statusEl.textContent = gameRunning ? "游戏中" : "游戏结束";
+            }
+            
+            // ========== 初始化游戏 ==========
+            function initGame() {
+                // 设置键盘事件
+                document.addEventListener('keydown', handleKeyDown);
+                document.addEventListener('keyup', handleKeyUp);
+                
+                // 按钮事件
+                startBtn.addEventListener('click', startGame);
+                pauseBtn.addEventListener('click', pauseGame);
+                restartBtn.addEventListener('click', restartGame);
+                
+                // 触摸控制
+                canvas.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    const touchX = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+                    
+                    if (touchX < canvas.width / 2) {
+                        keys['ArrowLeft'] = true;
+                        keys['ArrowRight'] = false;
+                    } else {
+                        keys['ArrowRight'] = true;
+                        keys['ArrowLeft'] = false;
+                    }
+                    
+                    // 跳跃（触摸屏幕任意位置）
+                    if (gameRunning && !gamePaused) {
+                        handlePlayerJump();
+                    }
+                });
+                
+                canvas.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    keys['ArrowLeft'] = false;
+                    keys['ArrowRight'] = false;
+                });
+                
+                // 鼠标控制
+                canvas.addEventListener('mousedown', (e) => {
+                    const mouseX = e.clientX - canvas.getBoundingClientRect().left;
+                    
+                    if (mouseX < canvas.width / 2) {
+                        keys['ArrowLeft'] = true;
+                        keys['ArrowRight'] = false;
+                    } else {
+                        keys['ArrowRight'] = true;
+                        keys['ArrowLeft'] = false;
+                    }
+                    
+                    // 跳跃
+                    if (gameRunning && !gamePaused) {
+                        handlePlayerJump();
+                    }
+                });
+                
+                canvas.addEventListener('mouseup', () => {
+                    keys['ArrowLeft'] = false;
+                    keys['ArrowRight'] = false;
+                });
+                
+                // 初始化平台
+                initPlatforms();
+                draw();
+                
+                console.log('改进版跑酷游戏初始化完成');
+                console.log('控制说明：');
+                console.log('- 方向键/AD：左右移动');
+                console.log('- 空格键：无限跳跃（可以一直按空格在空中连续跳跃）');
+                console.log('- P键：暂停/继续');
+                console.log('- 收集金色饼干获得50分');
+                console.log('- 游戏场景无限生成，尽量收集更多饼干！');
+                console.log('- 埋和伊在追逐过程中会有甜蜜对话！');
+            }
+            
+            // 启动游戏初始化
+            initGame();
+        }
+    });
     </script>
 </body>
-
 </html>
-
-
-
-
