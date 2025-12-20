@@ -1789,6 +1789,13 @@
             margin: 30px auto;
             text-align: center;
             max-width: 100%;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.01);
         }
 
         /* 竖屏图片基础样式 */
@@ -1797,13 +1804,14 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
             display: block;
             margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .vertical-image:hover {
-            transform: scale(1.01);
+            box-shadow: 0 8px 25px rgba(232, 106, 146, 0.3);
         }
 
         /* 图片标题样式 */
@@ -1842,6 +1850,130 @@
             max-height: 700px;
         }
 
+        /* 放大图标样式 */
+        .zoom-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(232, 106, 146, 0.8);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-container:hover .zoom-indicator {
+            opacity: 1;
+        }
+
+        /* 增强的图片模态框样式 */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(232, 106, 146, 0.5);
+            animation: zoomIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .image-modal-caption {
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2em;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .close-image-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            transition: color 0.3s;
+        }
+
+        .close-image-modal:hover {
+            color: #ff8fab;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(232, 106, 146, 0.7);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal-nav:hover {
+            background-color: rgba(232, 106, 146, 0.9);
+        }
+
+        .modal-nav.prev {
+            left: 20px;
+        }
+
+        .modal-nav.next {
+            right: 20px;
+        }
+
+        .modal-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
         /* 响应式设计：在移动设备上调整 */
         @media (max-width: 768px) {
             .image-container .vertical-image {
@@ -1854,6 +1986,30 @@
             
             .image-container.large-vertical .vertical-image {
                 max-height: 500px;
+            }
+            
+            .zoom-indicator {
+                display: none;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .modal-nav.prev {
+                left: 10px;
+            }
+            
+            .modal-nav.next {
+                right: 10px;
+            }
+            
+            .close-image-modal {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
             }
         }
     </style>
@@ -2156,40 +2312,55 @@
                                 <p>爱吃饼干的埋，也可以叫做"埋"。在2025年6月9号入坑姜饼人王国，于2025年8月31号在小红书平台开始发表自己的第一个作品。在发表这里开始写你的个人经历文章...例如，你可以讲述你是如何开始画画、如何接触到这个圈子等等。</p>
                                 
                                 <!-- 图片示例1：竖屏图片 -->
-                                <div class="image-container">
-                                    <img src="1.jpg" alt="图片描述1" class="vertical-image">
+                                <div class="image-container" data-image-index="0">
+                                    <div class="zoom-indicator">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <img src="1.jpg" alt="我的第一张作品，充满了对姜饼人王国的热爱" class="vertical-image" data-caption="我的第一张作品，充满了对姜饼人王国的热爱">
                                     <p class="image-caption">我的第一张作品，充满了对姜饼人王国的热爱</p>
                                 </div>
                                 
                                 <p>继续你的文章叙述...在刚开始创作的时候，我遇到了很多困难，比如如何表现角色的情感，如何设计有趣的剧情等等。</p>
                                 
                                 <!-- 图片示例2：竖屏图片 -->
-                                <div class="image-container">
-                                    <img src="2.jpg" alt="图片描述2" class="vertical-image">
+                                <div class="image-container" data-image-index="1">
+                                    <div class="zoom-indicator">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <img src="2.jpg" alt="在小红书发表的第一个作品，获得了不少关注" class="vertical-image" data-caption="在小红书发表的第一个作品，获得了不少关注">
                                     <p class="image-caption">在小红书发表的第一个作品，获得了不少关注</p>
                                 </div>
                                 
                                 <p>更多的故事和回忆...在这个过程中，我认识了很多志同道合的朋友，大家一起交流创作经验，互相鼓励。</p>
                                 
                                 <!-- 图片示例3：不同尺寸的竖屏图片 -->
-                                <div class="image-container medium-vertical">
-                                    <img src="3.jpg" alt="图片描述3" class="vertical-image">
+                                <div class="image-container medium-vertical" data-image-index="2">
+                                    <div class="zoom-indicator">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <img src="3.jpg" alt="与粉丝互动的截图，大家的支持是我继续创作的动力" class="vertical-image" data-caption="与粉丝互动的截图，大家的支持是我继续创作的动力">
                                     <p class="image-caption">与粉丝互动的截图，大家的支持是我继续创作的动力</p>
                                 </div>
                                 
                                 <p>继续写...随着作品越来越多，我也逐渐形成了自己的风格，开始尝试更多元化的表达方式。</p>
                                 
                                 <!-- 图片示例4：小尺寸竖屏图片 -->
-                                <div class="image-container small-vertical">
-                                    <img src="4.jpg" alt="图片描述4" class="vertical-image">
+                                <div class="image-container small-vertical" data-image-index="3">
+                                    <div class="zoom-indicator">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <img src="4.jpg" alt="工作台一角，记录我的创作日常" class="vertical-image" data-caption="工作台一角，记录我的创作日常">
                                     <p class="image-caption">工作台一角，记录我的创作日常</p>
                                 </div>
                                 
                                 <p>最后的故事...虽然创作路上有苦有甜，但每当看到自己的作品被大家喜欢，就觉得一切都是值得的。</p>
                                 
                                 <!-- 图片示例5：大尺寸竖屏图片 -->
-                                <div class="image-container large-vertical">
-                                    <img src="5.jpg" alt="图片描述5" class="vertical-image">
+                                <div class="image-container large-vertical" data-image-index="4">
+                                    <div class="zoom-indicator">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <img src="5.jpg" alt="迄今为止最满意的作品，展现了我和伊的故事" class="vertical-image" data-caption="迄今为止最满意的作品，展现了我和伊的故事">
                                     <p class="image-caption">迄今为止最满意的作品，展现了我和伊的故事</p>
                                 </div>
                             </div>
@@ -2203,8 +2374,11 @@
                                 <p>瓜条其实就是网络上的一种匿名爆料或讨论形式，有时候很有趣，有时候也会让人困扰。我个人觉得，只要不涉及人身攻击和恶意造谣，瓜条也是一种社区交流的方式。</p>
                                 
                                 <!-- 瓜条相关图片 -->
-                                <div class="image-container">
-                                    <img src="瓜条示例.jpg" alt="有趣的瓜条示例" class="vertical-image">
+                                <div class="image-container" data-image-index="5">
+                                    <div class="zoom-indicator">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <img src="瓜条示例.jpg" alt="有趣的瓜条示例" class="vertical-image" data-caption="一些有趣的瓜条内容，展现了社区的活力">
                                     <p class="image-caption">一些有趣的瓜条内容，展现了社区的活力</p>
                                 </div>
                                 
@@ -2631,6 +2805,20 @@
         <div id="modal-title"></div>
     </div>
 
+    <!-- 增强的图片模态框 -->
+    <div class="image-modal" id="image-modal">
+        <span class="close-image-modal">&times;</span>
+        <div class="modal-counter" id="modal-counter">1/6</div>
+        <button class="modal-nav prev" id="modal-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img class="image-modal-content" id="image-modal-content">
+        <button class="modal-nav next" id="modal-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="image-modal-caption" id="image-modal-caption"></div>
+    </div>
+
     <script>
     // ========== 网站登录与权限控制系统 ==========
     document.addEventListener('DOMContentLoaded', function() {
@@ -2760,6 +2948,193 @@
             
             // 初始化双女主Galgame
             initGalgame();
+            
+            // 初始化图片放大查看功能
+            initImageZoomFeature();
+        }
+        
+        // ========== 图片放大查看功能 ==========
+        function initImageZoomFeature() {
+            console.log("初始化图片放大查看功能");
+            
+            // 获取所有个人经历中的图片
+            const experienceImages = document.querySelectorAll('#column-experience .vertical-image');
+            const experienceContainers = document.querySelectorAll('#column-experience .image-container');
+            
+            // 获取图片模态框元素
+            const imageModal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('image-modal-content');
+            const modalCaption = document.getElementById('image-modal-caption');
+            const modalCounter = document.getElementById('modal-counter');
+            const modalPrev = document.getElementById('modal-prev');
+            const modalNext = document.getElementById('modal-next');
+            const modalClose = document.querySelector('.close-image-modal');
+            
+            // 当前显示的图片索引
+            let currentImageIndex = 0;
+            
+            // 收集所有图片数据
+            const imageData = [];
+            
+            // 为每个图片容器添加点击事件
+            experienceContainers.forEach((container, index) => {
+                const img = container.querySelector('.vertical-image');
+                const caption = container.querySelector('.image-caption');
+                
+                if (img && caption) {
+                    // 保存图片数据
+                    imageData.push({
+                        src: img.src,
+                        caption: img.getAttribute('data-caption') || caption.textContent,
+                        alt: img.alt
+                    });
+                    
+                    // 为容器添加点击事件
+                    container.addEventListener('click', function(e) {
+                        // 防止点击放大图标时触发
+                        if (e.target.closest('.zoom-indicator')) {
+                            return;
+                        }
+                        
+                        // 设置当前图片索引
+                        currentImageIndex = parseInt(container.getAttribute('data-image-index')) || index;
+                        
+                        // 打开模态框
+                        openImageModal(currentImageIndex);
+                    });
+                }
+            });
+            
+            // 为图片本身添加点击事件
+            experienceImages.forEach((img, index) => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation(); // 防止事件冒泡到容器
+                    currentImageIndex = index;
+                    openImageModal(currentImageIndex);
+                });
+            });
+            
+            // 为放大图标添加点击事件
+            document.querySelectorAll('.zoom-indicator').forEach((indicator, index) => {
+                indicator.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    currentImageIndex = index;
+                    openImageModal(currentImageIndex);
+                });
+            });
+            
+            // 打开图片模态框
+            function openImageModal(index) {
+                if (imageData.length === 0) return;
+                
+                // 确保索引在有效范围内
+                if (index < 0) index = 0;
+                if (index >= imageData.length) index = imageData.length - 1;
+                
+                currentImageIndex = index;
+                
+                // 更新模态框内容
+                const data = imageData[currentImageIndex];
+                modalImage.src = data.src;
+                modalCaption.textContent = data.caption;
+                modalCounter.textContent = `${currentImageIndex + 1}/${imageData.length}`;
+                
+                // 显示模态框
+                imageModal.classList.add('active');
+                
+                // 禁止背景滚动
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // 关闭图片模态框
+            function closeImageModal() {
+                imageModal.classList.remove('active');
+                
+                // 恢复背景滚动
+                document.body.style.overflow = '';
+            }
+            
+            // 显示上一张图片
+            function showPrevImage() {
+                currentImageIndex--;
+                if (currentImageIndex < 0) {
+                    currentImageIndex = imageData.length - 1;
+                }
+                openImageModal(currentImageIndex);
+            }
+            
+            // 显示下一张图片
+            function showNextImage() {
+                currentImageIndex++;
+                if (currentImageIndex >= imageData.length) {
+                    currentImageIndex = 0;
+                }
+                openImageModal(currentImageIndex);
+            }
+            
+            // 绑定模态框控制事件
+            modalPrev.addEventListener('click', showPrevImage);
+            modalNext.addEventListener('click', showNextImage);
+            modalClose.addEventListener('click', closeImageModal);
+            
+            // 点击模态框背景关闭
+            imageModal.addEventListener('click', function(e) {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+            
+            // 键盘控制
+            document.addEventListener('keydown', function(e) {
+                if (imageModal.classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeImageModal();
+                            break;
+                        case 'ArrowLeft':
+                            showPrevImage();
+                            break;
+                        case 'ArrowRight':
+                            showNextImage();
+                            break;
+                    }
+                }
+            });
+            
+            // 为"瓜条相关图片"也添加点击放大功能
+            const opinionImage = document.querySelector('#column-opinion .vertical-image');
+            const opinionContainer = document.querySelector('#column-opinion .image-container');
+            
+            if (opinionImage && opinionContainer) {
+                const opinionData = {
+                    src: opinionImage.src,
+                    caption: opinionImage.getAttribute('data-caption') || 
+                            (opinionContainer.querySelector('.image-caption')?.textContent || ''),
+                    alt: opinionImage.alt
+                };
+                
+                opinionContainer.addEventListener('click', function(e) {
+                    if (e.target.closest('.zoom-indicator')) {
+                        return;
+                    }
+                    modalImage.src = opinionData.src;
+                    modalCaption.textContent = opinionData.caption;
+                    modalCounter.textContent = "1/1";
+                    imageModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                opinionImage.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    modalImage.src = opinionData.src;
+                    modalCaption.textContent = opinionData.caption;
+                    modalCounter.textContent = "1/1";
+                    imageModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            console.log(`图片放大功能已初始化，共找到${imageData.length}张图片`);
         }
         
         // 初始化网站原有功能
