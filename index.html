@@ -2910,24 +2910,6 @@
             initAppWithMode(true);
         }
         
-        // 切换模式按钮功能
-        document.getElementById('switchModeBtn').addEventListener('click', function() {
-            console.log("点击切换模式按钮");
-            // 直接清除所有会话存储
-            sessionStorage.clear();
-            
-            // 隐藏主内容，显示登录界面
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('loginOverlay').style.display = 'flex';
-            
-            // 重置登录界面状态
-            document.getElementById('devPasswordPrompt').style.display = 'none';
-            document.getElementById('devModeBtn').style.display = 'block';
-            document.getElementById('guestMode').style.display = 'block';
-            document.getElementById('passwordError').textContent = '';
-            document.getElementById('devPassword').value = '';
-        });
-        
         // 根据模式初始化应用
         function initAppWithMode(isDev) {
             console.log(`进入${isDev ? '开发者' : '游客'}模式`);
@@ -2936,6 +2918,9 @@
             if (isDev) {
                 document.getElementById('devModeIndicator').style.display = 'inline-block';
             }
+            
+            // 重新设置切换模式按钮（修复的关键）
+            setupSwitchModeButton();
             
             // 初始化网站原有功能
             initOriginalFeatures();
@@ -2951,6 +2936,55 @@
             
             // 初始化图片放大查看功能
             initImageZoomFeature();
+        }
+        
+        // ========== 修复切换模式按钮功能 ==========
+        function setupSwitchModeButton() {
+            console.log("设置切换模式按钮");
+            const switchBtn = document.getElementById('switchModeBtn');
+            if (switchBtn) {
+                // 克隆按钮以移除旧的事件监听器
+                const newSwitchBtn = switchBtn.cloneNode(true);
+                switchBtn.parentNode.replaceChild(newSwitchBtn, switchBtn);
+                
+                newSwitchBtn.addEventListener('click', function() {
+                    console.log("点击切换模式按钮");
+                    
+                    // 清理所有游戏状态
+                    if (window.gameLoop) {
+                        cancelAnimationFrame(window.gameLoop);
+                        window.gameLoop = null;
+                    }
+                    
+                    // 清除所有会话存储
+                    sessionStorage.clear();
+                    
+                    // 隐藏主内容，显示登录界面
+                    document.getElementById('mainContent').style.display = 'none';
+                    document.getElementById('loginOverlay').style.display = 'flex';
+                    
+                    // 重置登录界面状态
+                    const passwordPrompt = document.getElementById('devPasswordPrompt');
+                    const devModeBtn = document.getElementById('devModeBtn');
+                    const guestMode = document.getElementById('guestMode');
+                    
+                    if (passwordPrompt && devModeBtn && guestMode) {
+                        passwordPrompt.style.display = 'none';
+                        devModeBtn.style.display = 'block';
+                        guestMode.style.display = 'block';
+                        document.getElementById('passwordError').textContent = '';
+                        document.getElementById('devPassword').value = '';
+                    }
+                    
+                    // 重置开发者模式标记
+                    const devIndicator = document.getElementById('devModeIndicator');
+                    if (devIndicator) {
+                        devIndicator.style.display = 'none';
+                    }
+                    
+                    console.log("已重置所有状态，返回登录界面");
+                });
+            }
         }
         
         // ========== 图片放大查看功能 ==========
@@ -5314,7 +5348,8 @@
                 console.log('- P键：暂停/继续');
                 console.log('- 收集金色饼干获得50分');
                 console.log('- 游戏场景无限生成，尽量收集更多饼干！');
-                console.log('- 埋和伊在追逐过程中会有甜蜜对话！');
+                console.log('- 伊会不断追踪你并扔瓜条，小心躲避！');
+                console.log('- 在追逐过程中，埋和伊会有甜蜜对话！');
             }
             
             // 启动游戏初始化
