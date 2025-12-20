@@ -1783,6 +1783,79 @@
             color: #888;
             font-size: 0.9rem;
         }
+        
+        /* 图片容器样式 - 新增的部分 */
+        .image-container {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        /* 竖屏图片基础样式 */
+        .vertical-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .vertical-image:hover {
+            transform: scale(1.01);
+        }
+
+        /* 图片标题样式 */
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        /* 不同尺寸的竖屏图片样式 */
+
+        /* 默认尺寸：适合大多数竖屏图片 */
+        .image-container .vertical-image {
+            max-height: 500px;
+        }
+
+        /* 小尺寸竖屏图片 */
+        .image-container.small-vertical .vertical-image {
+            max-height: 300px;
+        }
+
+        /* 中等尺寸竖屏图片 */
+        .image-container.medium-vertical .vertical-image {
+            max-height: 400px;
+        }
+
+        /* 大尺寸竖屏图片 */
+        .image-container.large-vertical .vertical-image {
+            max-height: 600px;
+        }
+
+        /* 超大尺寸竖屏图片（全高度） */
+        .image-container.full-vertical .vertical-image {
+            max-height: 700px;
+        }
+
+        /* 响应式设计：在移动设备上调整 */
+        @media (max-width: 768px) {
+            .image-container .vertical-image {
+                max-height: 400px;
+            }
+            
+            .image-container.small-vertical .vertical-image {
+                max-height: 250px;
+            }
+            
+            .image-container.large-vertical .vertical-image {
+                max-height: 500px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2080,18 +2153,45 @@
                         <section class="article-column" id="column-experience">
                             <h3><i class="fas fa-book-open"></i> 埋的个人经历</h3>
                             <div class="text-content">
-                                <p>这里开始写你的个人经历文章...例如，你可以讲述你是如何开始画画、如何接触到这个圈子等等。</p>
-                                <!-- 图片插入点1 -->
-                                <div class="img-insert-point" data-img="experience1.jpg" data-title="第一张回忆">(点击这里插入图片1)</div>
-                                <p>继续你的文章叙述...</p>
-                                <!-- 图片插入点2 -->
-                                <div class="img-insert-point" data-img="experience2.jpg" data-title="第二张回忆">(点击这里插入图片2)</div>
-                                <p>更多的故事和回忆...</p>
-                                <div class="img-insert-point" data-img="experience3.jpg" data-title="第三张回忆">(点击这里插入图片3)</div>
-                                <p>继续写...</p>
-                                <div class="img-insert-point" data-img="experience4.jpg" data-title="第四张回忆">(点击这里插入图片4)</div>
-                                <p>最后的故事...</p>
-                                <div class="img-insert-point" data-img="experience5.jpg" data-title="第五张回忆">(点击这里插入图片5)</div>
+                                <p>爱吃饼干的埋，也可以叫做"埋"。在2025年6月9号入坑姜饼人王国，于2025年8月31号在小红书平台开始发表自己的第一个作品。在发表这里开始写你的个人经历文章...例如，你可以讲述你是如何开始画画、如何接触到这个圈子等等。</p>
+                                
+                                <!-- 图片示例1：竖屏图片 -->
+                                <div class="image-container">
+                                    <img src="你的图片路径1.jpg" alt="图片描述1" class="vertical-image">
+                                    <p class="image-caption">我的第一张作品，充满了对姜饼人王国的热爱</p>
+                                </div>
+                                
+                                <p>继续你的文章叙述...在刚开始创作的时候，我遇到了很多困难，比如如何表现角色的情感，如何设计有趣的剧情等等。</p>
+                                
+                                <!-- 图片示例2：竖屏图片 -->
+                                <div class="image-container">
+                                    <img src="你的图片路径2.jpg" alt="图片描述2" class="vertical-image">
+                                    <p class="image-caption">在小红书发表的第一个作品，获得了不少关注</p>
+                                </div>
+                                
+                                <p>更多的故事和回忆...在这个过程中，我认识了很多志同道合的朋友，大家一起交流创作经验，互相鼓励。</p>
+                                
+                                <!-- 图片示例3：不同尺寸的竖屏图片 -->
+                                <div class="image-container medium-vertical">
+                                    <img src="你的图片路径3.jpg" alt="图片描述3" class="vertical-image">
+                                    <p class="image-caption">与粉丝互动的截图，大家的支持是我继续创作的动力</p>
+                                </div>
+                                
+                                <p>继续写...随着作品越来越多，我也逐渐形成了自己的风格，开始尝试更多元化的表达方式。</p>
+                                
+                                <!-- 图片示例4：小尺寸竖屏图片 -->
+                                <div class="image-container small-vertical">
+                                    <img src="你的图片路径4.jpg" alt="图片描述4" class="vertical-image">
+                                    <p class="image-caption">工作台一角，记录我的创作日常</p>
+                                </div>
+                                
+                                <p>最后的故事...虽然创作路上有苦有甜，但每当看到自己的作品被大家喜欢，就觉得一切都是值得的。</p>
+                                
+                                <!-- 图片示例5：大尺寸竖屏图片 -->
+                                <div class="image-container large-vertical">
+                                    <img src="你的图片路径5.jpg" alt="图片描述5" class="vertical-image">
+                                    <p class="image-caption">迄今为止最满意的作品，展现了我和伊的故事</p>
+                                </div>
                             </div>
                         </section>
 
@@ -2101,7 +2201,15 @@
                             <div class="text-content">
                                 <p>这里写你对瓜条文化的完整看法、趣事或者分析...</p>
                                 <p>瓜条其实就是网络上的一种匿名爆料或讨论形式，有时候很有趣，有时候也会让人困扰。我个人觉得，只要不涉及人身攻击和恶意造谣，瓜条也是一种社区交流的方式。</p>
-                                <p>文章结尾...</p>
+                                
+                                <!-- 瓜条相关图片 -->
+                                <div class="image-container">
+                                    <img src="瓜条示例.jpg" alt="有趣的瓜条示例" class="vertical-image">
+                                    <p class="image-caption">一些有趣的瓜条内容，展现了社区的活力</p>
+                                </div>
+                                
+                                <p>文章结尾...我认为瓜条文化是网络社区发展的自然产物，重要的是如何引导大家理性讨论。</p>
+                                
                                 <!-- 改进的互动西瓜 -->
                                 <div class="watermelon-interactive">
                                     <h4>瓜条态度测试器</h4>
@@ -4344,6 +4452,7 @@
                 cameraX = player.x - canvas.width * 0.3;
                 cameraX = Math.max(0, cameraX);
                 
+
                 // 更新玩家物理
                 player.velocityY += gravity;
                 player.y += player.velocityY;
@@ -4628,6 +4737,7 @@
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.fillStyle = '#e86a92';
                     ctx.font = 'bold 40px Arial';
+
                     ctx.textAlign = 'center';
                     ctx.fillText('游戏暂停', canvas.width/2, canvas.height/2 - 20);
                     ctx.font = '20px Arial';
